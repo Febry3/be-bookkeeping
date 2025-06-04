@@ -10,18 +10,17 @@ class AuthenticateUser {
             if (header?.startsWith('Bearer')) {
                 token = header.split(' ')[1];
             }
-
             if (!token) throw new Unauthorized('User has invalid token');
 
             const payload = userToken.isTokenValid(token) as IPayload;
-
+            req.body = {};
             req.body.user = {
                 name: payload.name,
                 email: payload.email,
                 role: payload.role,
                 userId: payload.userId
             }
-
+            console.log(req.body.user);
             next();
         } catch (err) {
             next(err);

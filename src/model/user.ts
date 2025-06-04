@@ -19,7 +19,7 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
     declare role: string;
 
     public async comparePassword(password: string): Promise<boolean> {
-        return bcrypt.compare(password, this.password);
+        return await bcrypt.compare(password, this.password);
     }
 }
 

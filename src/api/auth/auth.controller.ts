@@ -22,6 +22,7 @@ class AuthController {
 
     public async login(req: Request, res: Response, next: NextFunction) {
         try {
+
             const token = await authService.login(req);
             return res.status(StatusCodes.OK).json({
                 status: true,

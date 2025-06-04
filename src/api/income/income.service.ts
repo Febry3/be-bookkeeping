@@ -8,4 +8,8 @@ class IncomeService {
         const income = Income.create({ type, amount });
         return income;
     }
+
+    public async getIncome(req: Request): Promise<IncomeAttributes[]> {
+        return [];
+    }
 }

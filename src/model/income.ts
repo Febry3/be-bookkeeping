@@ -7,6 +7,7 @@ interface IncomeAttributes {
     type: string,
     amount: number,
     userId: number,
+    createdAt: Date,
 }
 
 class Income extends Model<InferAttributes<Income>, InferCreationAttributes<Income>> {
@@ -14,6 +15,7 @@ class Income extends Model<InferAttributes<Income>, InferCreationAttributes<Inco
     declare type: string;
     declare amount: number;
     declare userId: ForeignKey<User['id']>;
+    declare createdAt: CreationOptional<Date>;
 }
 
 Income.init({
@@ -34,6 +36,9 @@ Income.init({
             model: User,
             key: "id"
         }
+    },
+    createdAt: {
+        type: DataTypes.DATE
     }
 }, {
     tableName: "Incomes",
