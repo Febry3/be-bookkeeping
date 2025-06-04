@@ -12,29 +12,29 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.2.2
+        uses: appleboy/ssh-action@v0.1.6
         with:
-          host: ${{ secrets.SERVER_IP}}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             echo "🔄 Navigating to project folder..."
-            # cd /home/azureuser/be-bookkeeping
+            cd /home/azureuser/be-bookkeeping
 
-            # echo "🔄 Pulling latest code..."
-            # git pull origin main
+            echo "🔄 Pulling latest code..."
+            git pull origin main
 
-            # echo "📦 Installing dependencies..."
-            # npm install
+            echo "📦 Installing dependencies..."
+            npm install
 
-            # echo "🔧 Build TypeScript if needed..."
-            # npx tsc
+            echo "🔧 Build TypeScript if needed..."
+            npx tsc
 
-            # echo "🚀 Restarting PM2 process..."
-            # pm2 restart be-bookkeeping || pm2 start dist/index.js --name be-bookkeeping
+            echo "🚀 Restarting PM2 process..."
+            pm2 restart be-bookkeeping || pm2 start dist/index.js --name be-bookkeeping
 
-            # echo "💾 Saving PM2 process..."
-            # pm2 save
-            # pm2 list
+            echo "💾 Saving PM2 process..."
+            pm2 save
+            pm2 list

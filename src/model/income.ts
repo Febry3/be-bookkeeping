@@ -2,21 +2,21 @@ import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreation
 import database from "../config/database";
 import { User } from "./user";
 
-interface RevenueAttributes {
+interface IncomeAttributes {
     revenueId: number,
     type: string,
     amount: number,
     userId: number,
 }
 
-class Revenue extends Model<InferAttributes<Revenue>, InferCreationAttributes<Revenue>> {
+class Income extends Model<InferAttributes<Income>, InferCreationAttributes<Income>> {
     declare revenueId: CreationOptional<number>;
     declare type: string;
     declare amount: number;
     declare userId: ForeignKey<User['id']>;
 }
 
-Revenue.init({
+Income.init({
     revenueId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -36,17 +36,17 @@ Revenue.init({
         }
     }
 }, {
-    tableName: "Revenues",
+    tableName: "Incomes",
     timestamps: true,
     sequelize: database.sequelize,
-    modelName: "Revenue",
+    modelName: "Income",
 });
 
-Revenue.belongsTo(User, {
+Income.belongsTo(User, {
     foreignKey: 'userId',
     targetKey: 'id',
     as: "user",
     onDelete: "CASCADE"
 });
 
-export { Revenue, RevenueAttributes };
+export { Income, IncomeAttributes };

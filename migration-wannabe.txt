@@ -1,0 +1,9 @@
+User.sync();
+Income.sync();
+Asset.sync();
+Equity.sync();
+Investation.sync();
+Liability.sync();
+Loan.sync();
+Notification.sync();
+Spend.sync();
