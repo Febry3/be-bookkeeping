@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { Income, IncomeAttributes } from "../../model/income";
 import { StatusCodes } from "http-status-codes";
 import { Op, WhereOptions, literal, where } from "sequelize";
+import incomeService from "./income.service";
 
 class IncomeController {
     public async getAllIncomes(req: Request, res: Response, next: NextFunction) {
@@ -31,10 +32,7 @@ class IncomeController {
                 };
             }
 
-            const incomes = await Income.findAll({
-                where: whereConditions,
-                order: [['createdAt', 'DESC']]
-            })
+            const incomes = await incomeService.getIncome(whereConditions);
 
 
             let totalMainIncome = 0;

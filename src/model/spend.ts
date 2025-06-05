@@ -1,4 +1,4 @@
-import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
 
@@ -6,7 +6,8 @@ interface SpendAttributes {
     spendId: number,
     spendingType: string,
     amount: number,
-    userId: number
+    userId: number,
+    createdAt: Date
 }
 
 class Spend extends Model<InferAttributes<Spend>, InferCreationAttributes<Spend>> {
@@ -14,6 +15,7 @@ class Spend extends Model<InferAttributes<Spend>, InferCreationAttributes<Spend>
     declare spendingType: string;
     declare amount: number;
     declare userId: ForeignKey<User['id']>;
+    declare createdAt: CreationOptional<Date>;
 }
 
 Spend.init({
@@ -40,6 +42,9 @@ Spend.init({
             model: User,
             key: "id"
         }
+    },
+    createdAt: {
+        type: DataTypes.DATE
     }
 }, {
     tableName: "Spends",

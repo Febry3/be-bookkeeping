@@ -1,6 +1,7 @@
 import { Request } from "express";
 import { Income, IncomeAttributes } from "../../model/income";
 import { User } from "../../model/user";
+import { WhereOptions } from "sequelize";
 
 class IncomeService {
     public async createIncome(req: Request): Promise<IncomeAttributes> {
@@ -9,7 +10,12 @@ class IncomeService {
         return income;
     }
 
-    public async getIncome(req: Request): Promise<IncomeAttributes[]> {
-        return [];
+    public async getIncome(whereConditions: WhereOptions<IncomeAttributes>): Promise<IncomeAttributes[]> {
+        return await Income.findAll({
+            where: whereConditions,
+            order: [['createdAt', 'DESC']]
+        });
     }
 }
+
+export default new IncomeService;
