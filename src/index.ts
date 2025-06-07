@@ -4,7 +4,7 @@ import { router as authRouter } from "./api/auth/auth.router";
 import errorHandlerMiddleware from "./middlewares/handle-error";
 import { router as incomeRouter } from "./api/income/income.router";
 
-import { router as financialRouter } from "./api/income/income.router";
+import { router as financialRouter } from "./api/financial/financial.router";
 import cookieParser from 'cookie-parser';
 import { User } from "./model/user";
 import { Income } from "./model/income";

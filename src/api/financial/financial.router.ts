@@ -1,19 +1,21 @@
 import express, { RequestHandler } from "express";
 import financialController from "./financial.controller";
-// PATH DIPERBAIKI
+// Menggunakan path middleware seperti pada contoh Anda
 import authenticateUser from "../../middlewares/authenticate-user"; 
 
 const router = express.Router();
 
-router.use(authenticateUser.authenticateUser as RequestHandler);
+// Middleware tidak lagi diterapkan secara global di sini, melainkan pada tiap rute.
+// router.use(authenticateUser.authenticateUser as RequestHandler); // Baris ini dihapus
 
-router.get('/financials', financialController.getAllFinancials as RequestHandler);
+// Middleware 'authenticateUser' ditambahkan ke setiap endpoint secara manual
+router.get('/financials', authenticateUser.authenticateUser as RequestHandler, financialController.getAllFinancials as RequestHandler);
 
-router.post('/financials/asset', financialController.createAsset as RequestHandler);
-router.get('/financials/asset/:id', financialController.getAssetById as RequestHandler);
-router.patch('/financials/asset/:id', financialController.updateAsset as RequestHandler);
-router.delete('/financials/asset/:id', financialController.deleteAsset as RequestHandler);
+router.post('/financials/asset', authenticateUser.authenticateUser as RequestHandler, financialController.createAsset as RequestHandler);
+router.get('/financials/asset/:id', authenticateUser.authenticateUser as RequestHandler, financialController.getAssetById as RequestHandler);
+router.patch('/financials/asset/:id', authenticateUser.authenticateUser as RequestHandler, financialController.updateAsset as RequestHandler);
+router.delete('/financials/asset/:id', authenticateUser.authenticateUser as RequestHandler, financialController.deleteAsset as RequestHandler);
 
-router.post('/financials/liability', financialController.createLiability as RequestHandler);
+router.post('/financials/liability', authenticateUser.authenticateUser as RequestHandler, financialController.createLiability as RequestHandler);
 
-export { router as financialRouter };
+export { router  };
