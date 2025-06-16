@@ -71,6 +71,22 @@ class IncomeController {
             next(e);
         }
     }
+
+    public async getIncomeInformation(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = req.user!;
+            const data = await incomeService.getIncomeInformation(userId);
+
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data Fetched",
+                data: data
+            });
+        } catch (e) {
+            console.error(e);
+            next(e);
+        }
+    }
 }
 
 export default new IncomeController;

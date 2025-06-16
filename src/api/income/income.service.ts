@@ -1,7 +1,8 @@
 import { Request } from "express";
 import { Income, IncomeAttributes } from "../../model/income";
-import { literal, Op, WhereOptions } from "sequelize";
+import { literal, Op, Sequelize, WhereOptions } from "sequelize";
 import NotFound from "../../errors/not-found";
+import { Spend } from "../../model/spend";
 
 class IncomeService {
     public async getIncome(filter: string, type: string) {
@@ -89,6 +90,36 @@ class IncomeService {
 
         if (!income) throw new NotFound(`There is no income with id: ${id}`);
         income.destroy();
+    }
+
+    //getting cogs, gross profit, ebit (earning before tax)
+    public async getIncomeInformation(userId: number) {
+        //cogs (cost of goods sold)
+        const stockExpenses = await Spend.sum("amount", {
+            where: {
+                userId: userId,
+                spendingType: "stock"
+            }
+        })
+
+        const incomes = await Income.sum("amount", {
+            where: {
+                userId: userId
+            }
+        });
+
+        const allExpenses = await Spend.sum("amount", {
+            where: {
+                userId: userId,
+            }
+        })
+
+        const grossProfit = incomes - stockExpenses;
+        const ebit = grossProfit - allExpenses;
+        const taxRate = 0.1;
+        const netProfit = (1 - taxRate) * ebit;
+
+        return { stockExpenses, incomes, allExpenses, grossProfit, ebit, taxRate, netProfit };
     }
 }
 

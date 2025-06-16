@@ -25,10 +25,22 @@ Liability.init({
         autoIncrement: true,
     },
     liabilityType: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: "Liability type can't be null"
+            }
+        }
     },
     liabilityCategory: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: "Liability category can't be null"
+            }
+        }
     },
     amount: {
         type: DataTypes.DECIMAL(20, 2),
