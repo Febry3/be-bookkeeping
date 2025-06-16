@@ -39,7 +39,11 @@ class IncomeController {
 
     public async updateIncome(req: Request, res: Response, next: NextFunction) {
         try {
-            const income = await incomeService.updateIncome(req);
+            const { id } = req.params;
+            const { type, amount, description } = req.body;
+            const { userId } = req.user!;
+
+            const income = await incomeService.updateIncome(parseInt(id), type, amount, description, userId);
 
             return res.status(StatusCodes.OK).json({
                 status: true,
@@ -54,7 +58,9 @@ class IncomeController {
 
     public async deleteIncome(req: Request, res: Response, next: NextFunction) {
         try {
-            const income = await incomeService.deleteIncome(req);
+            const { id } = req.params;
+            const { userId } = req.user!;
+            const income = await incomeService.deleteIncome(parseInt(id), userId);
 
             return res.status(StatusCodes.OK).json({
                 status: true,

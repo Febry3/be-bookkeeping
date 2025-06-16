@@ -61,10 +61,7 @@ class IncomeService {
         return income;
     }
 
-    public async updateIncome(req: Request): Promise<IncomeAttributes> {
-        const { id } = req.params;
-        const { type, amount, description } = req.body;
-        const { userId } = req.body.user;
+    public async updateIncome(id: number, type: string, amount: number, description: string, userId: number): Promise<IncomeAttributes> {
         const income = await Income.findOne({
             where: {
                 incomeId: id,
@@ -82,9 +79,7 @@ class IncomeService {
     }
 
 
-    public async deleteIncome(req: Request): Promise<void> {
-        const { id } = req.params;
-        const { userId } = req.body.user;
+    public async deleteIncome(id: number, userId: number): Promise<void> {
         const income = await Income.findOne({
             where: {
                 incomeId: id,
@@ -93,7 +88,6 @@ class IncomeService {
         });
 
         if (!income) throw new NotFound(`There is no income with id: ${id}`);
-
         income.destroy();
     }
 }
