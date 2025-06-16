@@ -13,16 +13,15 @@ class AuthenticateUser {
             if (!token) throw new Unauthorized('User has invalid token');
 
             const payload = userToken.isTokenValid(token) as IPayload;
-            req.body = {};
-            req.body.user = {
+            req.user = {
                 name: payload.name,
                 email: payload.email,
                 role: payload.role,
                 userId: payload.userId
             }
-            console.log(req.body.user);
             next();
         } catch (err) {
+            console.error(err);
             next(err);
         }
     }

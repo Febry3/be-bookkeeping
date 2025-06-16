@@ -4,6 +4,9 @@ import authenticateUser from "../../middlewares/authenticate-user";
 
 const { router } = express();
 
-router.post('/income', authenticateUser.authenticateUser, incomeController.getAllIncomes as RequestHandler);
+router.get('/income', authenticateUser.authenticateUser, incomeController.getAllIncomes as RequestHandler);
+router.post('/income', authenticateUser.authenticateUser, incomeController.createIncome as RequestHandler);
+router.put('/income/:id', authenticateUser.authenticateUser, incomeController.updateIncome as RequestHandler);
+router.delete('/income/:id', authenticateUser.authenticateUser, incomeController.deleteIncome as RequestHandler);
 
 export { router };

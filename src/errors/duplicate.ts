@@ -1,10 +1,10 @@
 import { StatusCodes } from "http-status-codes";
 import CustomApiError from "./custom-api-error";
 
-class NotFound extends CustomApiError {
+class Duplicate extends CustomApiError {
     constructor(message: string) {
-        super(message, StatusCodes.NOT_FOUND);
+        super(message, StatusCodes.CONFLICT);
     }
 }
 
-export default NotFound;
+export default Duplicate;
