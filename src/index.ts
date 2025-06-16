@@ -5,17 +5,10 @@ import { router as incomeRouter } from "./api/income/income.router";
 import { router as financialRouter } from "./api/financial/financial.router";
 import errorHandlerMiddleware from "./middlewares/handle-error";
 import cookieParser from 'cookie-parser';
-
+import {
+  User, Income, Asset, Equity, Investation, Liability, Loan, Spend
+} from './model';
 // Import semua model
-import { User } from "./model/user";
-import { Income } from "./model/income";
-import { Asset } from "./model/asset";
-import { Equity } from "./model/equity";
-import { Investation } from "./model/investation";
-import { Liability } from "./model/liability";
-import { Loan } from "./model/loan";
-import { Spend } from "./model/spend";
-
 const app = express();
 
 // Middleware
