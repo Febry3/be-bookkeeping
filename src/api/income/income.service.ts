@@ -1,29 +1,74 @@
 import { Request } from "express";
 import { Income, IncomeAttributes } from "../../model/income";
-import { User } from "../../model/user";
-import { WhereOptions } from "sequelize";
+import { literal, Op, WhereOptions } from "sequelize";
 import NotFound from "../../errors/not-found";
 
 class IncomeService {
-    public async getIncome(whereConditions: WhereOptions<IncomeAttributes>): Promise<IncomeAttributes[]> {
-        return await Income.findAll({
+    public async getIncome(filter: string, type: string) {
+        let endDate: string = "";
+
+        if (filter === "weekly") {
+            endDate = "DATE_SUB(NOW(), INTERVAL 1 WEEK)";
+        } else if (filter === "monthly") {
+            endDate = "DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+        } else if (filter === "yearly") {
+            endDate = "DATE_SUB(NOW(), INTERVAL 12 MONTH)";
+        }
+
+        const whereConditions: WhereOptions<IncomeAttributes> = {};
+
+        if (type) {
+            whereConditions.type = type as string;
+        }
+
+        if (endDate !== "") {
+            whereConditions.createdAt = {
+                [Op.lte]: literal("NOW()"),
+                [Op.gte]: literal(endDate),
+            };
+        }
+
+        const incomes = await Income.findAll({
             where: whereConditions,
             order: [['createdAt', 'DESC']]
         });
+
+        let totalMainIncome = 0;
+        let totalSideIncome = 0;
+        let totalAllIncome = 0;
+
+        for (const income of incomes) {
+            if (income.type.toLowerCase() === "main") {
+                totalMainIncome += income.amount;
+            }
+
+            if (income.type.toLowerCase() === "side") {
+                totalSideIncome += income.amount;
+            }
+            totalAllIncome += income.amount;
+        }
+
+        return {
+            totalMainIncome,
+            totalSideIncome,
+            totalAllIncome,
+            incomes
+        };
     }
 
-    public async createIncome(req: Request): Promise<IncomeAttributes> {
-        const { type, amount, description } = req.body;
-        const income = Income.create({ type, amount, description });
+    public async createIncome(type: string, amount: number, description: string, userId: number): Promise<IncomeAttributes> {
+        const income = Income.create({ type: type, amount: amount, description: description, userId: userId });
         return income;
     }
 
     public async updateIncome(req: Request): Promise<IncomeAttributes> {
         const { id } = req.params;
         const { type, amount, description } = req.body;
+        const { userId } = req.body.user;
         const income = await Income.findOne({
             where: {
-                incomeId: id
+                incomeId: id,
+                userId: userId
             }
         });
 
@@ -39,9 +84,11 @@ class IncomeService {
 
     public async deleteIncome(req: Request): Promise<void> {
         const { id } = req.params;
+        const { userId } = req.body.user;
         const income = await Income.findOne({
             where: {
-                incomeId: id
+                incomeId: id,
+                userId: userId
             }
         });
 

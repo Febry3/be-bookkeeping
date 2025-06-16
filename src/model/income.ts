@@ -28,9 +28,21 @@ Income.init({
     },
     type: {
         type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: "Income type can't be null"
+            }
+        }
     },
     amount: {
         type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: "Income amount can't be null"
+            }
+        }
     },
     description: {
         type: DataTypes.STRING
@@ -40,6 +52,12 @@ Income.init({
         references: {
             model: User,
             key: "id"
+        },
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: "Income user id can't be null"
+            }
         }
     },
     createdAt: {

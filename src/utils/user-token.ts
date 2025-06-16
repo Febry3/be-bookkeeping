@@ -5,7 +5,7 @@ export interface IPayload {
     name: string,
     email: string,
     role: string,
-    userId: string
+    userId: number
 }
 
 class UserToken {
