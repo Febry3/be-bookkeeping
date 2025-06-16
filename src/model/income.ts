@@ -3,23 +3,25 @@ import database from "../config/database";
 import { User } from "./user";
 
 interface IncomeAttributes {
-    revenueId: number,
+    incomeId: number,
     type: string,
     amount: number,
+    description: string,
     userId: number,
     createdAt: Date,
 }
 
 class Income extends Model<InferAttributes<Income>, InferCreationAttributes<Income>> {
-    declare revenueId: CreationOptional<number>;
+    declare incomeId: CreationOptional<number>;
     declare type: string;
     declare amount: number;
+    declare description: CreationOptional<string>;
     declare userId: ForeignKey<User['id']>;
     declare createdAt: CreationOptional<Date>;
 }
 
 Income.init({
-    revenueId: {
+    incomeId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -29,6 +31,9 @@ Income.init({
     },
     amount: {
         type: DataTypes.INTEGER,
+    },
+    description: {
+        type: DataTypes.STRING
     },
     userId: {
         type: DataTypes.INTEGER,

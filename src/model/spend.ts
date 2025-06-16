@@ -6,16 +6,18 @@ interface SpendAttributes {
     spendId: number,
     spendingType: string,
     amount: number,
+    description: string,
     userId: number,
     createdAt: Date
 }
 
 class Spend extends Model<InferAttributes<Spend>, InferCreationAttributes<Spend>> {
-    declare spendId: number;
+    declare spendId: CreationOptional<number>;
     declare spendingType: string;
     declare amount: number;
+    declare description: CreationOptional<string>;
     declare userId: ForeignKey<User['id']>;
-    declare createdAt: CreationOptional<Date>;
+    declare createdAt: Date;
 }
 
 Spend.init({
@@ -35,6 +37,9 @@ Spend.init({
                 msg: "Amount must be positive value"
             }
         }
+    },
+    description: {
+        type: DataTypes.STRING
     },
     userId: {
         type: DataTypes.INTEGER,
