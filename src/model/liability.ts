@@ -1,4 +1,4 @@
-import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, CreationOptional } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
 
@@ -11,7 +11,7 @@ interface LiabilityAttributes {
 }
 
 class Liability extends Model<InferAttributes<Liability>, InferCreationAttributes<Liability>> {
-    declare spendId: number;
+    declare spendId: CreationOptional<number>;
     declare liabilityType: string;
     declare liabilityCategory: string;
     declare amount: number;
@@ -61,4 +61,3 @@ Liability.belongsTo(User, {
 });
 
 export { Liability, LiabilityAttributes };
-

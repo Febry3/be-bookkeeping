@@ -1,4 +1,4 @@
-import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, CreationOptional } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
 
@@ -11,7 +11,7 @@ interface AssetAttributes {
 }
 
 class Asset extends Model<InferAttributes<Asset>, InferCreationAttributes<Asset>> {
-    declare assetId: number;
+    declare assetId: CreationOptional<number>;
     declare assetType: string;
     declare assetCategory: string;
     declare amount: number;
@@ -61,4 +61,3 @@ Asset.belongsTo(User, {
 });
 
 export { Asset, AssetAttributes };
-
