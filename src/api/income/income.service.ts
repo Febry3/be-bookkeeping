@@ -92,7 +92,7 @@ class IncomeService {
         income.destroy();
     }
 
-    //getting cogs, gross profit, ebit (earning before tax)
+    //getting cogs, gross profit, ebit (earning before tax) -> fungsi untuk mendapatkan semua data tersebut
     public async getIncomeInformation(userId: number) {
         //cogs (cost of goods sold)
         const stockExpenses = await Spend.sum("amount", {
