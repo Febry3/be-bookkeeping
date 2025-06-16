@@ -1,7 +1,7 @@
 import { Model, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
-import database from "../config/database"; // Assuming this path is correct
+import database from "../config/database";
 import { DataType } from 'sequelize-typescript';
-import bcrypt from 'bcrypt'; // Changed from 'bcryptjs' to 'bcrypt'
+import bcrypt from 'bcrypt';
 
 interface UserAttributes {
     id: number;

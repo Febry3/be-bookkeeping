@@ -49,7 +49,7 @@ class IncomeController {
                 }
                 totalAllIncome += income.amount;
             }
-            return res.status(StatusCodes.CREATED).json({
+            return res.status(StatusCodes.OK).json({
                 status: true,
                 message: "Data fetched",
                 data: {

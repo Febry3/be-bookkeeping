@@ -6,10 +6,7 @@ import authService from "./auth.service";
 class AuthController {
     public async register(req: Request, res: Response, next: NextFunction) {
         try {
-            const { name, email, password, role } = req.body;
-
-            const result = await User.create({ name, email, password, role });
-
+            const result = await authService.register(req);
             return res.status(StatusCodes.CREATED).json({
                 status: true,
                 message: "Registration Success",
@@ -22,7 +19,6 @@ class AuthController {
 
     public async login(req: Request, res: Response, next: NextFunction) {
         try {
-
             const token = await authService.login(req);
             return res.status(StatusCodes.OK).json({
                 status: true,

@@ -3,6 +3,9 @@ import BadRequest from "../../errors/bad-request";
 import { User } from "../../model/user";
 import Unauthorized from "../../errors/unauthorized";
 import userToken from "../../utils/user-token";
+import Duplicate from "../../errors/duplicate";
+import { ValidationError } from "sequelize";
+
 
 class AuthService {
     public async login(req: Request): Promise<string> {
@@ -18,6 +21,21 @@ class AuthService {
         const token = userToken.generateJwt({ name: user.name, email: user.email, userId: user.id, role: user.role });
 
         return token;
+    }
+
+    public async register(req: Request): Promise<any> {
+        try {
+            const { name, email, password, role } = req.body;
+            const result = await User.create({ name, email, password, role });
+
+            return result;
+        } catch (e: any) {
+            if (e instanceof ValidationError) {
+                throw new Duplicate("Duplicate email, please choose another email");
+            }
+            throw new Error(e as string);
+        }
+
     }
 }
 
