@@ -5,7 +5,6 @@ import incomeService from "./income.service";
 class IncomeController {
     public async getAllIncomes(req: Request, res: Response, next: NextFunction) {
         try {
-            console.log("asdadds");
             const { type, filter } = req.query;
 
             const result = await incomeService.getIncome(type as string, filter as string);

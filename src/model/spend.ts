@@ -17,7 +17,7 @@ class Spend extends Model<InferAttributes<Spend>, InferCreationAttributes<Spend>
     declare amount: number;
     declare description: CreationOptional<string>;
     declare userId: ForeignKey<User['id']>;
-    declare createdAt: Date;
+    declare createdAt: CreationOptional<Date>;;
 }
 
 Spend.init({
@@ -26,8 +26,9 @@ Spend.init({
         primaryKey: true,
         autoIncrement: true,
     },
+    //wage, buying stock or etc
     spendingType: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     },
     amount: {
         type: DataTypes.DECIMAL(20, 2),
@@ -36,7 +37,11 @@ Spend.init({
                 args: [0],
                 msg: "Amount must be positive value"
             }
-        }
+        },
+        get() {
+            const value = this.getDataValue('amount');
+            return parseFloat(value as any);
+        },
     },
     description: {
         type: DataTypes.STRING

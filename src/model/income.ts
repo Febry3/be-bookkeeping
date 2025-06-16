@@ -26,6 +26,7 @@ Income.init({
         primaryKey: true,
         autoIncrement: true
     },
+    // either main or side
     type: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -42,7 +43,11 @@ Income.init({
             notNull: {
                 msg: "Income amount can't be null"
             }
-        }
+        },
+        get() {
+            const value = this.getDataValue('amount');
+            return parseFloat(value as any);
+        },
     },
     description: {
         type: DataTypes.STRING

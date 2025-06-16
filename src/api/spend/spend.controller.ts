@@ -1,61 +1,70 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { literal, Op, WhereOptions } from "sequelize";
-import { Spend, SpendAttributes } from "../../model/spend";
+import spendService from "./spend.service";
 
 class SpendController {
     public async getAllSpends(req: Request, res: Response, next: NextFunction) {
         try {
-            let { type, filter } = req.query;
-
-            let endDate: string = "";
-
-            if (filter === "weekly") {
-                endDate = "DATE_SUB(NOW(), INTERVAL 1 WEEK)";
-            } else if (filter === "monthly") {
-                endDate = "DATE_SUB(NOW(), INTERVAL 1 MONTH)";
-            } else if (filter === "yearly") {
-                endDate = "DATE_SUB(NOW(), INTERVAL 12 MONTH)";
-            }
-
-            const whereConditions: WhereOptions<SpendAttributes> = {};
-
-            if (type) {
-                whereConditions.spendingType = type as string;
-            }
-
-            if (endDate !== "") {
-                whereConditions.createdAt = {
-                    [Op.lte]: literal("NOW()"),
-                    [Op.gte]: literal(endDate),
-                };
-            }
-
-            const spends = await Spend.findAll({
-                where: whereConditions,
-                order: [['createdAt', 'DESC']]
-            });
-
-            //COGS
-            let totalStockSpending = 0;
-            let totalAllSpending = 0;
-
-            for (const spend of spends) {
-                if (spend.spendingType.toLowerCase() === "stock") {
-                    totalStockSpending += spend.amount;
-                }
-                totalAllSpending += spend.amount;
-            }
-            return res.status(StatusCodes.CREATED).json({
+            const { type, filter } = req.query;
+            const result = await spendService.getAllSpending(type as string, filter as string);
+            return res.status(StatusCodes.OK).json({
                 status: true,
                 message: "Data fetched",
-                data: {
-                    totalStockSpending: totalStockSpending,
-                    totalAllSpending: totalAllSpending,
-                    spends: spends,
-                }
+                data: result
             });
         } catch (err) {
+            console.log(err);
+            next(err);
+        }
+    }
+
+    public async createSpend(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { spendingType, amount, description } = req.body;
+            const { userId } = req.user!;
+            const spend = await spendService.createSpend(spendingType, amount, description, userId);
+
+            return res.status(StatusCodes.CREATED).json({
+                status: true,
+                message: "Data Created",
+                data: spend
+            });
+        } catch (err) {
+            console.log(err);
+            next(err);
+        }
+    }
+
+    public async updateSpend(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { spendingType, amount, description } = req.body;
+            const { userId } = req.user!;
+            const { id } = req.params;
+            const spend = await spendService.updateSpend(parseInt(id), userId, spendingType, amount, description);
+
+            return res.status(StatusCodes.CREATED).json({
+                status: true,
+                message: "Data Updated",
+                data: spend
+            });
+        } catch (err) {
+            console.log(err);
+            next(err);
+        }
+    }
+
+    public async deleteSpend(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { id } = req.params;
+            const { userId } = req.user!;
+            const spend = await spendService.deleteSpend(parseInt(id), userId);
+
+            return res.status(StatusCodes.CREATED).json({
+                status: true,
+                message: "Data Deleted"
+            });
+        } catch (err) {
+            console.log(err);
             next(err);
         }
     }

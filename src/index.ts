@@ -3,6 +3,7 @@ import config from "./config/config";
 import { router as authRouter } from "./api/auth/auth.router";
 import { router as incomeRouter } from "./api/income/income.router";
 import { router as financialRouter } from "./api/financial/financial.router";
+import { router as spendRouter } from "./api/spend/spend.router";
 import errorHandlerMiddleware from "./middlewares/handle-error";
 import cookieParser from 'cookie-parser';
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 
 // Router
 app.use('/api', authRouter);
+app.use('/api', spendRouter);
 app.use('/api', incomeRouter);
 app.use('/api', financialRouter);
 
