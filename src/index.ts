@@ -5,6 +5,7 @@ import { router as incomeRouter } from "./api/income/income.router";
 import { router as financialRouter } from "./api/financial/financial.router";
 import { router as spendRouter } from "./api/spend/spend.router";
 import { router as liabilityRouter } from "./api/liability/liability.router";
+import { router as equityRouter } from "./api/equity/equity.router";
 import errorHandlerMiddleware from "./middlewares/handle-error";
 import cookieParser from 'cookie-parser';
 import {
@@ -24,6 +25,7 @@ app.use('/api', spendRouter);
 app.use('/api', incomeRouter);
 app.use('/api', financialRouter);
 app.use('/api', liabilityRouter);
+app.use('/api', equityRouter);
 
 // Tes endpoint utama
 app.get("/", (req, res) => {
