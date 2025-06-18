@@ -28,6 +28,7 @@ class SpendController {
                 status: true,
                 message: "Data Created",
                 data: spend
+                
             });
         } catch (err) {
             console.log(err);

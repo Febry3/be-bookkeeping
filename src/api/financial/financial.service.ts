@@ -1,7 +1,7 @@
 import { Asset } from "../../model/asset";
 import { Liability } from "../../model/liability";
 import { Equity } from "../../model/equity";
-import NotFound from "../../errors/not-found"; // Pastikan Anda punya error class ini
+import NotFound from "../../errors/not-found";
 
 // --- Tipe data untuk Aset ---
 interface CreateAssetData {
