@@ -38,14 +38,14 @@ app.use(errorHandlerMiddleware);
 // Start server
 app.listen(config.port, '0.0.0.0', async () => {
   try {
-     await User.sync();
-     await Income.sync({ force: true });
-     await Asset.sync({ force: true });
-    await Equity.sync({ force: true });
-     await Investation.sync({ force: true });
-     await Liability.sync({ force: true });
-     await Loan.sync({ force: true });
-     await Spend.sync({ force: true });
+    await User.sync();
+await Income.sync();
+await Asset.sync();
+await Equity.sync();
+await Investation.sync();
+await Liability.sync();
+await Loan.sync();
+await Spend.sync();
 
     console.log("✅ Successfully connected to the database! Sequelize instance is ready.");
   } catch (error) {
