@@ -1,21 +1,21 @@
+// models/asset.ts
+
 import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, CreationOptional } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
-
-interface AssetAttributes {
-    assetId: number,
-    assetType: string,
-    assetCategory: string,
-    amount: number,
-    userId: number
-}
 
 class Asset extends Model<InferAttributes<Asset>, InferCreationAttributes<Asset>> {
     declare assetId: CreationOptional<number>;
     declare assetType: string;
     declare assetCategory: string;
     declare amount: number;
+    declare description: CreationOptional<string>;
     declare userId: ForeignKey<User['id']>;
+
+    // --- DEKLARASI EKSPLISIT UNTUK TIMESTAMPS ---
+    declare createdAt: CreationOptional<Date>;
+    declare updatedAt: CreationOptional<Date>;
+    // ------------------------------------------
 }
 
 Asset.init({
@@ -25,13 +25,16 @@ Asset.init({
         autoIncrement: true,
     },
     assetType: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     assetCategory: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     amount: {
         type: DataTypes.DECIMAL(20, 2),
+        allowNull: false,
         validate: {
             min: {
                 args: [0],
@@ -39,16 +42,31 @@ Asset.init({
             }
         }
     },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     userId: {
         type: DataTypes.INTEGER,
         references: {
             model: User,
             key: "id"
-        }
+        },
+        allowNull: false
+    },
+    // --- DEFINISI EKSPLISIT UNTUK TIMESTAMPS ---
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false
     }
+    // ------------------------------------------
 }, {
     tableName: "Assets",
-    timestamps: true,
+    timestamps: true, // Opsi ini tetap diperlukan agar Sequelize mengelolanya secara otomatis
     sequelize: database.sequelize,
     modelName: "Asset",
 });
@@ -60,4 +78,4 @@ Asset.belongsTo(User, {
     onDelete: "CASCADE"
 });
 
-export { Asset, AssetAttributes };
+export { Asset };
