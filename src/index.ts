@@ -40,8 +40,8 @@ app.listen(config.port, '0.0.0.0', async () => {
   try {
     await User.sync();
 await Income.sync();
+await Asset.sync();
 await Equity.sync();
-     await Asset.sync({ force: true });
 await Investation.sync();
 await Liability.sync();
 await Loan.sync();
