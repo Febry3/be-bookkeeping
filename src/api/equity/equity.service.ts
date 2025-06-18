@@ -17,7 +17,6 @@ class EquityService {
         return equities;
     }
 
-
     public async updateEquity(equityId: number, userId: number, equityType: string, amount: number, description: string) {
         const equity = await Equity.findOne({ where: { equityId: equityId, userId: userId } });
         if (!equity) throw new NotFound(`There are no spend data with id: ${equityId} or userId: ${userId}`);
@@ -27,7 +26,6 @@ class EquityService {
             description: description
         });
     }
-
 
     public async deleteEquity(equityId: number, userId: number) {
         const equity = await Equity.findOne({ where: { equityId: equityId, userId: userId } });

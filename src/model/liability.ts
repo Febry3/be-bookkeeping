@@ -8,6 +8,7 @@ interface LiabilityAttributes {
     liabilityCategory: string,
     amount: number,
     description: string,
+    createdAt: Date,
     userId: number
 }
 
@@ -18,6 +19,7 @@ class Liability extends Model<InferAttributes<Liability>, InferCreationAttribute
     declare amount: number;
     declare description: CreationOptional<string>;
     declare userId: ForeignKey<User['id']>;
+    declare createdAt: CreationOptional<Date>;
 }
 
 Liability.init({
@@ -72,7 +74,10 @@ Liability.init({
             model: User,
             key: "id"
         }
-    }
+    },
+    createdAt: {
+        type: DataTypes.STRING
+    },
 }, {
     tableName: "Liabilities",
     timestamps: true,
