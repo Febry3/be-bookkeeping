@@ -18,6 +18,7 @@ class Income extends Model<InferAttributes<Income>, InferCreationAttributes<Inco
     declare description: CreationOptional<string>;
     declare userId: ForeignKey<User['id']>;
     declare createdAt: CreationOptional<Date>;
+    declare updatedAt: CreationOptional<Date>; // Ditambahkan untuk konsistensi dengan timestamps:true
 }
 
 Income.init({
@@ -26,7 +27,7 @@ Income.init({
         primaryKey: true,
         autoIncrement: true
     },
-    // either main or side
+    // Tipe bisa 'main' atau 'side'
     type: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -37,7 +38,7 @@ Income.init({
         }
     },
     amount: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER, // Sebaiknya gunakan DECIMAL jika ada kemungkinan angka desimal
         allowNull: false,
         validate: {
             notNull: {
@@ -50,7 +51,8 @@ Income.init({
         },
     },
     description: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: true
     },
     userId: {
         type: DataTypes.INTEGER,
@@ -65,12 +67,18 @@ Income.init({
             }
         }
     },
+    // Definisi eksplisit untuk createdAt dan updatedAt agar sesuai dengan deklarasi di class
     createdAt: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false
     }
 }, {
     tableName: "Incomes",
-    timestamps: true,
+    timestamps: true, // Opsi ini akan mengelola createdAt dan updatedAt secara otomatis
     sequelize: database.sequelize,
     modelName: "Income",
 });

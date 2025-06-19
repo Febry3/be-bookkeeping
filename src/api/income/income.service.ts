@@ -1,11 +1,27 @@
-import { Request } from "express";
+import { literal, Op, WhereOptions } from "sequelize";
 import { Income, IncomeAttributes } from "../../model/income";
-import { literal, Op, Sequelize, WhereOptions } from "sequelize";
 import NotFound from "../../errors/not-found";
 import { Spend } from "../../model/spend";
 
+// Tipe data untuk Income
+interface CreateIncomeData {
+    type: string;
+    amount: number;
+    description: string;
+    createdAt?: Date;
+}
+
+interface UpdateIncomeData {
+    type?: string;
+    amount?: number;
+    description?: string;
+    createdAt?: Date;
+}
+
+
 class IncomeService {
-    public async getIncome(filter: string, type: string) {
+    // --- FUNGSI INI DIPERBAIKI SECARA TOTAL ---
+    public async getIncome(userId: number, type: string, filter: string) {
         let endDate: string = "";
 
         if (filter === "weekly") {
@@ -16,7 +32,10 @@ class IncomeService {
             endDate = "DATE_SUB(NOW(), INTERVAL 12 MONTH)";
         }
 
-        const whereConditions: WhereOptions<IncomeAttributes> = {};
+        // PERBAIKAN PENTING: Menambahkan filter userId
+        const whereConditions: WhereOptions<IncomeAttributes> = {
+            userId: userId
+        };
 
         if (type) {
             whereConditions.type = type as string;
@@ -42,7 +61,6 @@ class IncomeService {
             if (income.type.toLowerCase() === "main") {
                 totalMainIncome += income.amount;
             }
-
             if (income.type.toLowerCase() === "side") {
                 totalSideIncome += income.amount;
             }
@@ -57,62 +75,59 @@ class IncomeService {
         };
     }
 
-    public async createIncome(type: string, amount: number, description: string, userId: number): Promise<IncomeAttributes> {
-        const income = Income.create({ type: type, amount: amount, description: description, userId: userId });
+    public async createIncome(data: CreateIncomeData, userId: number): Promise<Income> {
+        const income = await Income.create({
+            type: data.type,
+            amount: data.amount,
+            description: data.description,
+            createdAt: data.createdAt, // Menggunakan tanggal manual
+            userId: userId
+        });
         return income;
     }
 
-    public async updateIncome(id: number, type: string, amount: number, description: string, userId: number): Promise<IncomeAttributes> {
+    public async updateIncome(id: number, data: UpdateIncomeData, userId: number): Promise<Income> {
         const income = await Income.findOne({
-            where: {
-                incomeId: id,
-                userId: userId
-            }
+            where: { incomeId: id, userId: userId }
         });
 
-        if (!income) throw new NotFound(`There is no income with id: ${id}`);
+        if (!income) {
+            throw new NotFound(`Tidak ada data pendapatan dengan id: ${id}`);
+        }
+        
+        income.type = data.type ?? income.type;
+        income.amount = data.amount ?? income.amount;
+        income.description = data.description ?? income.description;
+        if (data.createdAt) income.setDataValue('createdAt', data.createdAt);
 
-        const result = income.update({
-            type, amount, description
-        });
-
-        return result;
+        await income.save();
+        return income;
     }
-
 
     public async deleteIncome(id: number, userId: number): Promise<void> {
         const income = await Income.findOne({
-            where: {
-                incomeId: id,
-                userId: userId
-            }
+            where: { incomeId: id, userId: userId }
         });
 
-        if (!income) throw new NotFound(`There is no income with id: ${id}`);
-        income.destroy();
+        if (!income) {
+            throw new NotFound(`Tidak ada data pendapatan dengan id: ${id}`);
+        }
+        await income.destroy();
     }
 
-    //getting cogs, gross profit, ebit (earning before tax) -> fungsi untuk mendapatkan semua data tersebut
     public async getIncomeInformation(userId: number) {
-        //cogs (cost of goods sold)
+        // Handle kasus jika nilai sum adalah null (tidak ada data)
         const stockExpenses = await Spend.sum("amount", {
-            where: {
-                userId: userId,
-                spendingType: "stock"
-            }
-        })
+            where: { userId: userId, spendingType: "stock" }
+        }) || 0;
 
         const incomes = await Income.sum("amount", {
-            where: {
-                userId: userId
-            }
-        });
+            where: { userId: userId }
+        }) || 0;
 
         const allExpenses = await Spend.sum("amount", {
-            where: {
-                userId: userId,
-            }
-        })
+            where: { userId: userId }
+        }) || 0;
 
         const grossProfit = incomes - stockExpenses;
         const ebit = grossProfit - allExpenses;
