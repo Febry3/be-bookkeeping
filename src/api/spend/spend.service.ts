@@ -2,8 +2,25 @@ import { literal, Op, WhereOptions } from "sequelize";
 import { Spend, SpendAttributes } from "../../model/spend";
 import NotFound from "../../errors/not-found";
 
+// Tipe data untuk Spend
+interface CreateSpendData {
+    spendingType: string;
+    amount: number;
+    description: string;
+    createdAt?: Date;
+}
+
+interface UpdateSpendData {
+    spendingType?: string;
+    amount?: number;
+    description?: string;
+    createdAt?: Date;
+}
+
+
 class SpendService {
-    public async getAllSpending(type: string, filter: string) {
+    // --- FUNGSI INI DIPERBAIKI SECARA TOTAL ---
+    public async getAllSpending(userId: number, type: string, filter: string) {
         let endDate: string = "";
 
         if (filter === "weekly") {
@@ -14,7 +31,10 @@ class SpendService {
             endDate = "DATE_SUB(NOW(), INTERVAL 12 MONTH)";
         }
 
-        const whereConditions: WhereOptions<SpendAttributes> = {};
+        // PERBAIKAN PENTING: Menambahkan filter userId
+        const whereConditions: WhereOptions<SpendAttributes> = {
+            userId: userId 
+        };
 
         if (type) {
             whereConditions.spendingType = type as string;
@@ -32,11 +52,9 @@ class SpendService {
             order: [['createdAt', 'DESC']]
         });
 
-        //COGS (Cost of Goods Sold)
         let totalStockSpending: number = 0;
         let totalAllSpending: number = 0;
 
-        //for now its alright if the data arent too much ehehe (consider to use direct query to db to sum up the amount)
         for (const spend of spends) {
             if (spend.spendingType.toLowerCase() === "stock") {
                 totalStockSpending += spend.amount
@@ -51,28 +69,38 @@ class SpendService {
         }
     }
 
-    public async createSpend(spendingType: string, amount: number, description: string, userId: number) {
-        const spend = Spend.create({
-            spendingType: spendingType, amount: amount, description: description, userId: userId,
+    public async createSpend(data: CreateSpendData, userId: number): Promise<Spend> {
+        const spend = await Spend.create({
+            spendingType: data.spendingType, 
+            amount: data.amount, 
+            description: data.description, 
+            createdAt: data.createdAt, // Menggunakan tanggal manual
+            userId: userId,
         });
-
         return spend;
     }
 
-    public async updateSpend(id: number, userId: number, spendingType: string, amount: number, description: string) {
+    public async updateSpend(id: number, data: UpdateSpendData, userId: number): Promise<Spend> {
         const spend = await Spend.findOne({ where: { spendId: id, userId: userId } });
-        if (!spend) throw new NotFound(`There are no spend data with id: ${id} or userId: ${userId}`);
-        spend.update({
-            spendingType: spendingType,
-            amount: amount,
-            description: description
-        });
+        if (!spend) {
+            throw new NotFound(`Tidak ada data pengeluaran dengan id: ${id}`);
+        }
+        
+        spend.spendingType = data.spendingType ?? spend.spendingType;
+        spend.amount = data.amount ?? spend.amount;
+        spend.description = data.description ?? spend.description;
+        if (data.createdAt) spend.setDataValue('createdAt', data.createdAt);
+        
+        await spend.save();
+        return spend;
     }
 
-    public async deleteSpend(id: number, userId: number) {
+    public async deleteSpend(id: number, userId: number): Promise<void> {
         const spend = await Spend.findOne({ where: { spendId: id, userId: userId } });
-        if (!spend) throw new NotFound(`There are no spend data with id: ${id} or userId: ${userId}`);
-        spend.destroy();
+        if (!spend) {
+            throw new NotFound(`Tidak ada data pengeluaran dengan id: ${id}`);
+        }
+        await spend.destroy();
     }
 }
 

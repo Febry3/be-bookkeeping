@@ -4,118 +4,311 @@ import financialService from "./financial.service";
 
 class FinancialController {
 
-    // Method untuk membuat Aset baru
+    // =============================================
+    // ========= KONTROLER UNTUK ASET (ASSET) ======
+    // =============================================
+
     public async createAsset(req: Request, res: Response, next: NextFunction) {
         try {
-            const result = await financialService.createAsset(req);
+            const { userId } = (req as any).user;
+            const { assetName, assetValue, assetType, assetDate, assetDescription } = req.body;
+
+            const data = {
+                assetCategory: assetName,
+                amount: assetValue,
+                assetType: assetType,
+                createdAt: assetDate,
+                description: assetDescription
+            };
+
+            const newAsset = await financialService.createAsset(data, userId);
             return res.status(StatusCodes.CREATED).json({
                 status: true,
-                message: "Asset created successfully",
-                data: result
+                message: "Data aset berhasil dibuat",
+                data: newAsset
             });
-        } catch (err) {
-            // Jika ada error, teruskan ke middleware error handler
-            next(err);
-        }
-    }
-    
-    // Method untuk membuat Liabilitas baru
-    public async createLiability(req: Request, res: Response, next: NextFunction) {
-        try {
-            const result = await financialService.createLiability(req);
-            return res.status(StatusCodes.CREATED).json({
-                status: true,
-                message: "Liability created successfully",
-                data: result
-            });
-        } catch (err) {
-            next(err);
+        } catch (error) {
+            console.error(error);
+            next(error);
         }
     }
 
-    // Method untuk mengambil semua data keuangan (aset & liabilitas)
-    public async getAllFinancials(req: Request, res: Response, next: NextFunction) {
+    public async getAllAssets(req: Request, res: Response, next: NextFunction) {
         try {
-            const result = await financialService.getAllFinancials(req);
+            const { userId } = (req as any).user;
+            const allAssets = await financialService.getAllAssets(userId);
             return res.status(StatusCodes.OK).json({
                 status: true,
-                message: "Financial records fetched successfully",
-                data: result
+                message: "Semua data aset berhasil diambil",
+                data: allAssets
             });
-        } catch (err) {
-            next(err);
+        } catch (error) {
+            console.error(error);
+            next(error);
         }
     }
 
-    // Method untuk mengambil satu Aset berdasarkan ID
     public async getAssetById(req: Request, res: Response, next: NextFunction) {
         try {
-            const result = await financialService.getAssetById(req);
-
-            // Jika service mengembalikan null, berarti data tidak ditemukan
-            if (!result) {
-                return res.status(StatusCodes.NOT_FOUND).json({
-                    status: false,
-                    message: `Asset with id ${req.params.id} not found`,
-                    data: null
-                });
-            }
-
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            const asset = await financialService.getAssetById(Number(id), userId);
             return res.status(StatusCodes.OK).json({
                 status: true,
-                message: "Asset fetched successfully",
-                data: result
+                message: "Data aset berhasil ditemukan",
+                data: asset
             });
-        } catch (err) {
-            next(err);
+        } catch (error) {
+            console.error(error);
+            next(error);
         }
     }
 
-    // Method untuk memperbarui Aset berdasarkan ID
     public async updateAsset(req: Request, res: Response, next: NextFunction) {
         try {
-            const result = await financialService.updateAsset(req);
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            const { assetName, assetValue, assetType, assetDate, assetDescription } = req.body;
 
-            // Jika service mengembalikan null, berarti data tidak ditemukan
-            if (!result) {
-                return res.status(StatusCodes.NOT_FOUND).json({
-                    status: false,
-                    message: `Asset with id ${req.params.id} not found`,
-                    data: null
-                });
-            }
+            const dataToUpdate = {
+                assetCategory: assetName,
+                amount: assetValue,
+                assetType: assetType,
+                createdAt: assetDate,
+                description: assetDescription
+            };
 
+            const updatedAsset = await financialService.updateAsset(Number(id), dataToUpdate, userId);
             return res.status(StatusCodes.OK).json({
                 status: true,
-                message: "Asset updated successfully",
-                data: result
+                message: "Data aset berhasil diperbarui",
+                data: updatedAsset
             });
-        } catch (err) {
-            next(err);
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async deleteAsset(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            await financialService.deleteAsset(Number(id), userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data aset berhasil dihapus",
+                data: null
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
         }
     }
     
-    // Method untuk menghapus Aset berdasarkan ID
-    public async deleteAsset(req: Request, res: Response, next: NextFunction) {
+
+    // =============================================
+    // ========= KONTROLER UNTUK EKUITAS (EQUITY) ==
+    // =============================================
+
+    public async createEquity(req: Request, res: Response, next: NextFunction) {
         try {
-            const result = await financialService.deleteAsset(req);
+            const { userId } = (req as any).user;
+            const { equityType, equityValue, equityDescription, equityDate } = req.body;
 
-            // Jika hasil destroy adalah 0, berarti tidak ada data yang dihapus
-            if (result === 0) {
-                 return res.status(StatusCodes.NOT_FOUND).json({
-                    status: false,
-                    message: `Asset with id ${req.params.id} not found`,
-                    data: null
-                });
-            }
+            const data = {
+                equityType: equityType,
+                amount: equityValue,
+                description: equityDescription,
+                createdAt: equityDate
+            };
+            
+            const newEquity = await financialService.createEquity(data, userId);
+            return res.status(StatusCodes.CREATED).json({
+                status: true,
+                message: "Data ekuitas berhasil dibuat",
+                data: newEquity
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
 
+    public async getAllEquities(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const allEquities = await financialService.getAllEquities(userId);
             return res.status(StatusCodes.OK).json({
                 status: true,
-                message: "Asset deleted successfully",
+                message: "Semua data ekuitas berhasil diambil",
+                data: allEquities
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async getEquityById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            const equity = await financialService.getEquityById(Number(id), userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data ekuitas berhasil ditemukan",
+                data: equity
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async updateEquity(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            const { equityType, equityValue, equityDescription, equityDate } = req.body;
+            
+            const dataToUpdate = {
+                equityType: equityType,
+                amount: equityValue,
+                description: equityDescription,
+                createdAt: equityDate
+            };
+
+            const updatedEquity = await financialService.updateEquity(Number(id), dataToUpdate, userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data ekuitas berhasil diperbarui",
+                data: updatedEquity
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async deleteEquity(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            await financialService.deleteEquity(Number(id), userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data ekuitas berhasil dihapus",
                 data: null
             });
-        } catch (err) {
-            next(err);
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    
+    // =============================================
+    // ======= KONTROLER UNTUK LIABILITAS (LIABILITY)
+    // =============================================
+
+    public async createLiability(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { liabilityName, liabilityValue, liabilityDate, liabilityDueDate, lender, paymentStatus } = req.body;
+            
+            const data = {
+                liabilityType: liabilityName,
+                liabilityCategory: lender,
+                amount: liabilityValue,
+                description: paymentStatus,
+                createdAt: liabilityDate,
+                updatedAt: liabilityDueDate
+            };
+
+            const newLiability = await financialService.createLiability(data, userId);
+            return res.status(StatusCodes.CREATED).json({
+                status: true,
+                message: "Data liabilitas berhasil dibuat",
+                data: newLiability
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async getAllLiabilities(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const allLiabilities = await financialService.getAllLiabilities(userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Semua data liabilitas berhasil diambil",
+                data: allLiabilities
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+    
+    public async getLiabilityById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            const liability = await financialService.getLiabilityById(Number(id), userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data liabilitas berhasil ditemukan",
+                data: liability
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async updateLiability(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            const { liabilityName, liabilityValue, liabilityDate, liabilityDueDate, lender, paymentStatus } = req.body;
+
+            const dataToUpdate = {
+                liabilityType: liabilityName,
+                liabilityCategory: lender,
+                amount: liabilityValue,
+                description: paymentStatus,
+                createdAt: liabilityDate,
+                updatedAt: liabilityDueDate
+            };
+
+            const updatedLiability = await financialService.updateLiability(Number(id), dataToUpdate, userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data liabilitas berhasil diperbarui",
+                data: updatedLiability
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async deleteLiability(req: Request, res: Response, next: NextFunction) {
+         try {
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            await financialService.deleteLiability(Number(id), userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data liabilitas berhasil dihapus",
+                data: null
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
         }
     }
 }
