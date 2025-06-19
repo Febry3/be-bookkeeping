@@ -37,7 +37,11 @@ Asset.init({
                 args: [0],
                 msg: "Amount must be positive value"
             }
-        }
+        },
+        get() {
+            const value = this.getDataValue('amount');
+            return parseFloat(value as any);
+        },
     },
     userId: {
         type: DataTypes.INTEGER,

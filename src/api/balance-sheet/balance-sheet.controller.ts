@@ -6,7 +6,8 @@ class BalanceSheetController {
     public async getBalanceSheetData(req: Request, res: Response, next: NextFunction) {
         try {
             const { userId } = req.user!;
-            const liabilities = await balanceSheetService.getBalanceSheetData(userId);
+            const { startDate, endDate } = req.query;
+            const liabilities = await balanceSheetService.getBalanceSheetData(userId, startDate as string, endDate as string);
             return res.status(StatusCodes.OK).json({
                 status: true,
                 message: "Data fetched",
