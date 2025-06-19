@@ -13,6 +13,7 @@ import cookieParser from 'cookie-parser';
 import {
   User, Income, Asset, Equity, Investation, Liability, Loan, Spend
 } from './model';
+import morganMiddleware from "./middlewares/morgan";
 
 // Import semua model
 const app = express();
@@ -21,6 +22,7 @@ const app = express();
 app.use(json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(morganMiddleware);
 
 // Router
 app.use('/api', authRouter);
