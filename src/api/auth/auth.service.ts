@@ -24,8 +24,9 @@ class AuthService {
 
     public async register(req: Request): Promise<any> {
         try {
-            const { name, email, password, role } = req.body;
-            const result = await User.create({ name, email, password, role });
+            const { name, email, password, role,currency,language } = req.body;
+
+            const result = await User.create({ name, email, password, role,currency,language});
 
             return result;
         } catch (e: any) {
