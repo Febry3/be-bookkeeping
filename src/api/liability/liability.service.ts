@@ -1,9 +1,9 @@
 import NotFound from "../../errors/not-found";
-import { Liability } from "../../model";
+import { Liability, User } from "../../model";
 
 class LiabilityService {
     public async getAllLiability(userId: number) {
-        const liabilities = await Liability.findAll({ where: { userId: userId } });
+        const liabilities = await Liability.findAll({ where: { userId: userId }, include: { model: User, as: "user" } });
         return liabilities;
     }
 

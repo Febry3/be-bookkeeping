@@ -68,7 +68,6 @@ User.init(
             }
         },
         password: {
-
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -118,11 +117,6 @@ User.init(
                     user.password = await bcrypt.hash(user.password, salt);
                 }
             },
-        },
-        defaultScope: {
-            attributes: {
-                exclude: ['password']
-            }
         },
     }
 );

@@ -8,6 +8,7 @@ import {
 } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
+import ConversionRate from "../config/conversion-rate";
 
 // Interface ini tidak wajib tapi bisa membantu
 interface LiabilityAttributes {
@@ -20,6 +21,7 @@ interface LiabilityAttributes {
     createdAt?: Date;
     updatedAt?: Date;
     userId: number;
+    convertedAmount?: number;
 }
 
 class Liability extends Model<InferAttributes<Liability>, InferCreationAttributes<Liability>> {
@@ -32,6 +34,7 @@ class Liability extends Model<InferAttributes<Liability>, InferCreationAttribute
     declare updatedAt: CreationOptional<Date>;
     declare dueDate: CreationOptional<Date>; // Field khusus untuk jatuh tempo
     declare userId: ForeignKey<User['id']>;
+    declare convertedAmount?: number;
 }
 
 Liability.init({
@@ -65,7 +68,7 @@ Liability.init({
     // Field baru untuk tanggal jatuh tempo
     dueDate: {
         type: DataTypes.DATE,
-        allowNull: true, 
+        allowNull: true,
     },
     userId: {
         type: DataTypes.INTEGER,
@@ -85,6 +88,19 @@ Liability.init({
     timestamps: true,
     sequelize: database.sequelize,
     modelName: "Liability",
+    hooks: {
+        afterFind: (instances) => {
+            const instancesArray = Array.isArray(instances) ? instances : [instances].filter(Boolean);
+            for (const instance of instancesArray) {
+                if (instance.user && instance.user.currency) {
+                    const rate = parseFloat(ConversionRate[instance.user.currency]);
+                    const convertedValue = parseFloat((instance.getDataValue('amount') * rate).toFixed(2));
+                    instance.dataValues.convertedAmount = convertedValue;
+                }
+                delete instance.dataValues.user;
+            }
+        }
+    }
 });
 
 Liability.belongsTo(User, {

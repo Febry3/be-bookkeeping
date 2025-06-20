@@ -1,5 +1,4 @@
 import express, { RequestHandler } from "express";
-import incomeController from "./equity.controller";
 import authenticateUser from "../../middlewares/authenticate-user";
 import equityController from "./equity.controller";
 
