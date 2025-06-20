@@ -44,7 +44,7 @@ app.use(errorHandlerMiddleware);
 // Start server
 app.listen(config.port, '0.0.0.0', async () => {
   try {
-    // await User.sync({ force: true });
+     await User.sync({ force: true });
     // await Income.sync({ force: true });
     // await Asset.sync({ force: true });
     // await Equity.sync({ force: true });
