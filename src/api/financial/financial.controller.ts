@@ -215,19 +215,26 @@ class FinancialController {
     public async createLiability(req: Request, res: Response, next: NextFunction) {
         try {
             const { userId } = (req as any).user;
-            const { liabilityName, liabilityValue, liabilityDate, liabilityDueDate, lender, paymentStatus } = req.body;
+            const { 
+                liabilityType, 
+                liabilityCategory, 
+                amount, 
+                description, 
+                liabilityDate, 
+                liabilityDueDate 
+            } = req.body;
             
             const data = {
-                liabilityType: liabilityName,
-                liabilityCategory: lender,
-                amount: liabilityValue,
-                description: paymentStatus,
+                liabilityType: liabilityType,
+                liabilityCategory: liabilityCategory,
+                amount: amount,
+                description: description,
                 createdAt: liabilityDate,
                 dueDate: liabilityDueDate
             };
 
             const newLiability = await financialService.createLiability(data, userId);
-            return res.status(StatusCodes.CREATED).json({
+            return res.status(201).json({
                 status: true,
                 message: "Data liabilitas berhasil dibuat",
                 data: newLiability
@@ -242,7 +249,7 @@ class FinancialController {
         try {
             const { userId } = (req as any).user;
             const allLiabilities = await financialService.getAllLiabilities(userId);
-            return res.status(StatusCodes.OK).json({
+            return res.status(200).json({
                 status: true,
                 message: "Semua data liabilitas berhasil diambil",
                 data: allLiabilities
@@ -258,7 +265,7 @@ class FinancialController {
             const { userId } = (req as any).user;
             const { id } = req.params;
             const liability = await financialService.getLiabilityById(Number(id), userId);
-            return res.status(StatusCodes.OK).json({
+            return res.status(200).json({
                 status: true,
                 message: "Data liabilitas berhasil ditemukan",
                 data: liability
@@ -273,19 +280,26 @@ class FinancialController {
         try {
             const { userId } = (req as any).user;
             const { id } = req.params;
-            const { liabilityName, liabilityValue, liabilityDate, liabilityDueDate, lender, paymentStatus } = req.body;
+            const { 
+                liabilityType, 
+                liabilityCategory, 
+                amount, 
+                description, 
+                liabilityDate, 
+                liabilityDueDate 
+            } = req.body;
 
             const dataToUpdate = {
-                liabilityType: liabilityName,
-                liabilityCategory: lender,
-                amount: liabilityValue,
-                description: paymentStatus,
+                liabilityType: liabilityType,
+                liabilityCategory: liabilityCategory,
+                amount: amount,
+                description: description,
                 createdAt: liabilityDate,
                 dueDate: liabilityDueDate
             };
 
             const updatedLiability = await financialService.updateLiability(Number(id), dataToUpdate, userId);
-            return res.status(StatusCodes.OK).json({
+            return res.status(200).json({
                 status: true,
                 message: "Data liabilitas berhasil diperbarui",
                 data: updatedLiability
@@ -301,7 +315,7 @@ class FinancialController {
             const { userId } = (req as any).user;
             const { id } = req.params;
             await financialService.deleteLiability(Number(id), userId);
-            return res.status(StatusCodes.OK).json({
+            return res.status(200).json({
                 status: true,
                 message: "Data liabilitas berhasil dihapus",
                 data: null
@@ -312,5 +326,6 @@ class FinancialController {
         }
     }
 }
+ 
 
 export default new FinancialController();
