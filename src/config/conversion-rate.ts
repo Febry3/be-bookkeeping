@@ -4,5 +4,4 @@ enum ConversionRate {
     USD = <number>0.21,
 }
 
-
 export default ConversionRate;

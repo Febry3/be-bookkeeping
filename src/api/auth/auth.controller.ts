@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { User } from "../../model/user";
 import { StatusCodes } from "http-status-codes";
 import authService from "./auth.service";
 
@@ -24,6 +23,21 @@ class AuthController {
                 status: true,
                 message: "Login Success",
                 token: token
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    public async updateProfile(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { name, email, role, language, currency } = req.body;
+            const { userId } = req.user!;
+            const user = await authService.updateProfile(userId, name, email, role, language, currency);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Update Success",
+                data: user
             });
         } catch (err) {
             next(err);

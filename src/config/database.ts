@@ -7,10 +7,8 @@ class Database {
         this.sequelize = new Sequelize(config.dbName, config.dbUsername, config.dbPassword, {
             host: "localhost",
             dialect: "mysql",
-            logging: false
         });
     }
-
 }
 
 export default new Database();

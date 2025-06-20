@@ -1,8 +1,9 @@
 // models/asset.ts
 
-import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, CreationOptional } from "sequelize";
+import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, CreationOptional, NonAttribute } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
+import ConversionRate from "../config/conversion-rate";
 
 class Asset extends Model<InferAttributes<Asset>, InferCreationAttributes<Asset>> {
     declare assetId: CreationOptional<number>;
@@ -11,11 +12,10 @@ class Asset extends Model<InferAttributes<Asset>, InferCreationAttributes<Asset>
     declare amount: number;
     declare description: CreationOptional<string>;
     declare userId: ForeignKey<User['id']>;
-
-    // --- DEKLARASI EKSPLISIT UNTUK TIMESTAMPS ---
     declare createdAt: CreationOptional<Date>;
     declare updatedAt: CreationOptional<Date>;
-    // ------------------------------------------
+    declare user?: NonAttribute<User>;
+    declare convertedAmount?: number;
 }
 
 Asset.init({
@@ -58,7 +58,6 @@ Asset.init({
         },
         allowNull: false
     },
-    // --- DEFINISI EKSPLISIT UNTUK TIMESTAMPS ---
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false
@@ -67,12 +66,24 @@ Asset.init({
         type: DataTypes.DATE,
         allowNull: false
     }
-    // ------------------------------------------
 }, {
     tableName: "Assets",
-    timestamps: true, // Opsi ini tetap diperlukan agar Sequelize mengelolanya secara otomatis
+    timestamps: true,
     sequelize: database.sequelize,
     modelName: "Asset",
+    hooks: {
+        afterFind: (instances) => {
+            const instancesArray = Array.isArray(instances) ? instances : [instances].filter(Boolean);
+            for (const instance of instancesArray) {
+                if (instance.user && instance.user.currency) {
+                    const rate = parseFloat(ConversionRate[instance.user.currency]);
+                    const convertedValue = parseFloat((instance.getDataValue('amount') * rate).toFixed(2));
+                    instance.dataValues.convertedAmount = convertedValue;
+                }
+                delete instance.dataValues.user;
+            }
+        }
+    }
 });
 
 Asset.belongsTo(User, {

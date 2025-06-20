@@ -57,8 +57,6 @@ class SpendService {
             }]
         });
 
-
-
         let totalStockSpending: number = 0;
         let totalAllSpending: number = 0;
 

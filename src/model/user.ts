@@ -2,13 +2,13 @@ import { Model, InferAttributes, InferCreationAttributes, CreationOptional, Data
 import database from "../config/database";
 import bcrypt from 'bcrypt';
 
-enum Currency {
+export enum Currency {
     MYR = "MYR",
     IDR = "IDR",
     USD = "USD",
 }
 
-enum Language {
+export enum Language {
     Malaysian = "Malaysian",
     English = "English",
     Indonesian = "Indonesian",
@@ -68,6 +68,7 @@ User.init(
             }
         },
         password: {
+
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -116,8 +117,13 @@ User.init(
                     const salt = await bcrypt.genSalt(10);
                     user.password = await bcrypt.hash(user.password, salt);
                 }
+            },
+        },
+        defaultScope: {
+            attributes: {
+                exclude: ['password']
             }
-        }
+        },
     }
 );
 
