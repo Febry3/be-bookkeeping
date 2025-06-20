@@ -1,7 +1,18 @@
-import { Model, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
+import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize';
 import database from "../config/database";
-import { DataType } from 'sequelize-typescript';
 import bcrypt from 'bcrypt';
+
+enum Currency {
+    MYR = "MYR",
+    IDR = "IDR",
+    USD = "USD",
+}
+
+enum Language {
+    Malaysian = "Malaysian",
+    English = "English",
+    Indonesian = "Indonesian",
+}
 
 interface UserAttributes {
     id: number;
@@ -9,6 +20,8 @@ interface UserAttributes {
     email: string;
     password: string;
     role: string;
+    currency: Currency;
+    language: Language;
 }
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
@@ -17,6 +30,8 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
     declare email: string;
     declare password: string;
     declare role: string;
+    declare currency: Currency;
+    declare language: Language;
 
     public async comparePassword(password: string): Promise<boolean> {
         return await bcrypt.compare(password, this.password);
@@ -26,12 +41,12 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
 User.init(
     {
         id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
         name: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: {
@@ -40,7 +55,7 @@ User.init(
             }
         },
         email: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true,
             validate: {
@@ -53,7 +68,7 @@ User.init(
             }
         },
         password: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: {
@@ -67,7 +82,7 @@ User.init(
             }
         },
         role: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: {
@@ -75,6 +90,14 @@ User.init(
                 }
             }
         },
+        currency: {
+            type: DataTypes.ENUM("MYR", "IDR", "USD"),
+            defaultValue: Currency.MYR,
+        },
+        language: {
+            type: DataTypes.ENUM("Malaysian", "English", "Indonesian"),
+            defaultValue: Language.Malaysian,
+        }
     },
     {
         tableName: "Users",

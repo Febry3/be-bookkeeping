@@ -1,0 +1,46 @@
+2025-06-19 18:45:07:457 [35mhttp[39m: [35mPOST endpoint:/api/income status:201 response-time:51.107 ms[39m
+[35m[39m
+2025-06-19 20:37:57:3757 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:110.272 ms[39m
+[35m[39m
+2025-06-19 20:38:01:381 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:64.924 ms[39m
+[35m[39m
+2025-06-19 20:38:07:387 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:67.805 ms[39m
+[35m[39m
+2025-06-19 20:38:12:3812 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:64.376 ms[39m
+[35m[39m
+2025-06-19 20:38:13:3813 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:62.369 ms[39m
+[35m[39m
+2025-06-19 20:38:14:3814 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:62.749 ms[39m
+[35m[39m
+2025-06-20 09:10:13:1013 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:125.812 ms[39m
+[35m[39m
+2025-06-20 09:10:28:1028 [35mhttp[39m: [35mGET endpoint:/api/income?filter=monthly&type=%22main%22 status:500 response-time:10.888 ms[39m
+[35m[39m
+2025-06-20 09:10:32:1032 [35mhttp[39m: [35mGET endpoint:/api/income?filter=monthly&type=%22main%22 status:500 response-time:2.288 ms[39m
+[35m[39m
+2025-06-20 09:10:53:1053 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:95.852 ms[39m
+[35m[39m
+2025-06-20 09:10:56:1056 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:62.662 ms[39m
+[35m[39m
+2025-06-20 09:10:57:1057 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:61.763 ms[39m
+[35m[39m
+2025-06-20 09:10:59:1059 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:62.103 ms[39m
+[35m[39m
+2025-06-20 09:11:00:110 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:61.237 ms[39m
+[35m[39m
+2025-06-20 09:11:08:118 [35mhttp[39m: [35mGET endpoint:/api/income?filter=monthly&type=%22main%22 status:200 response-time:14.115 ms[39m
+[35m[39m
+2025-06-20 09:11:21:1121 [35mhttp[39m: [35mGET endpoint:/api/income/info status:200 response-time:15.619 ms[39m
+[35m[39m
+2025-06-20 09:11:31:1131 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:4.629 ms[39m
+[35m[39m
+2025-06-20 09:11:43:1143 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:500 response-time:124.992 ms[39m
+[35m[39m
+2025-06-20 09:11:45:1145 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:500 response-time:11.835 ms[39m
+[35m[39m
+2025-06-20 09:11:49:1149 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:500 response-time:10.650 ms[39m
+[35m[39m
+2025-06-20 13:59:51:5951 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:99.184 ms[39m
+[35m[39m
+2025-06-20 13:59:52:5952 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:61.907 ms[39m
+[35m[39m

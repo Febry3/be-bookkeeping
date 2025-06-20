@@ -43,7 +43,10 @@ Equity.init({
         type: DataTypes.DECIMAL(20, 2),
         allowNull: false,
         validate: {
-            min: 0,
+            min: {
+                args: [0],
+                msg: "Amount must be positive value"
+            }
         },
         get() {
             const value = this.getDataValue('amount');
