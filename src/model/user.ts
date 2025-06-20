@@ -30,8 +30,8 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
     declare email: string;
     declare password: string;
     declare role: string;
-    declare currency: Currency;
-    declare language: Language;
+    declare currency: CreationOptional<Currency>;
+    declare language: CreationOptional<Language>;
 
     public async comparePassword(password: string): Promise<boolean> {
         return await bcrypt.compare(password, this.password);

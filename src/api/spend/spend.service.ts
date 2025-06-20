@@ -1,6 +1,7 @@
 import { literal, Op, WhereOptions } from "sequelize";
 import { Spend, SpendAttributes } from "../../model/spend";
 import NotFound from "../../errors/not-found";
+import { User } from "../../model";
 
 // Tipe data untuk Spend
 interface CreateSpendData {
@@ -20,7 +21,7 @@ interface UpdateSpendData {
 
 class SpendService {
     // --- FUNGSI INI DIPERBAIKI SECARA TOTAL ---
-    public async getAllSpending(userId: number, type: string, filter: string) {
+    public async getAllSpending(userId: number, type: string, filter: string, currency: string) {
         let endDate: string = "";
 
         if (filter === "weekly") {
@@ -33,7 +34,7 @@ class SpendService {
 
         // PERBAIKAN PENTING: Menambahkan filter userId
         const whereConditions: WhereOptions<SpendAttributes> = {
-            userId: userId 
+            userId: userId
         };
 
         if (type) {
@@ -49,20 +50,27 @@ class SpendService {
 
         const spends = await Spend.findAll({
             where: whereConditions,
-            order: [['createdAt', 'DESC']]
+            order: [['createdAt', 'DESC']],
+            include: [{
+                model: User,
+                as: "user"
+            }]
         });
+
+
 
         let totalStockSpending: number = 0;
         let totalAllSpending: number = 0;
 
         for (const spend of spends) {
             if (spend.spendingType.toLowerCase() === "stock") {
-                totalStockSpending += spend.amount
+                totalStockSpending += spend.dataValues.convertedAmount!;
             }
-            totalAllSpending += spend.amount;
+            totalAllSpending += spend.dataValues.convertedAmount!;
         }
 
         return {
+            currency: currency,
             totalStockSpending: totalStockSpending,
             totalAllSpending: totalAllSpending,
             spends: spends,
@@ -71,9 +79,9 @@ class SpendService {
 
     public async createSpend(data: CreateSpendData, userId: number): Promise<Spend> {
         const spend = await Spend.create({
-            spendingType: data.spendingType, 
-            amount: data.amount, 
-            description: data.description, 
+            spendingType: data.spendingType,
+            amount: data.amount,
+            description: data.description,
             createdAt: data.createdAt, // Menggunakan tanggal manual
             userId: userId,
         });
@@ -85,12 +93,12 @@ class SpendService {
         if (!spend) {
             throw new NotFound(`Tidak ada data pengeluaran dengan id: ${id}`);
         }
-        
+
         spend.spendingType = data.spendingType ?? spend.spendingType;
         spend.amount = data.amount ?? spend.amount;
         spend.description = data.description ?? spend.description;
         if (data.createdAt) spend.setDataValue('createdAt', data.createdAt);
-        
+
         await spend.save();
         return spend;
     }

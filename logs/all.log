@@ -44,3 +44,143 @@
 [35m[39m
 2025-06-20 13:59:52:5952 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:61.907 ms[39m
 [35m[39m
+2025-06-20 15:34:05:345 [35mhttp[39m: [35mGET endpoint:/api/spend status:500 response-time:21.006 ms[39m
+[35m[39m
+2025-06-20 15:34:15:3415 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:57.337 ms[39m
+[35m[39m
+2025-06-20 15:35:17:3517 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:50.227 ms[39m
+[35m[39m
+2025-06-20 15:35:19:3519 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:4.358 ms[39m
+[35m[39m
+2025-06-20 15:37:12:3712 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:21.873 ms[39m
+[35m[39m
+2025-06-20 15:37:33:3733 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:64.838 ms[39m
+[35m[39m
+2025-06-20 15:37:43:3743 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:66.483 ms[39m
+[35m[39m
+2025-06-20 15:37:54:3754 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:9.840 ms[39m
+[35m[39m
+2025-06-20 15:37:59:3759 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:4.635 ms[39m
+[35m[39m
+2025-06-20 15:40:12:4012 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:50.099 ms[39m
+[35m[39m
+2025-06-20 15:40:16:4016 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:5.257 ms[39m
+[35m[39m
+2025-06-20 15:40:29:4029 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:68.655 ms[39m
+[35m[39m
+2025-06-20 15:40:39:4039 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:5.678 ms[39m
+[35m[39m
+2025-06-20 15:41:41:4141 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:55.139 ms[39m
+[35m[39m
+2025-06-20 15:42:04:424 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:9.054 ms[39m
+[35m[39m
+2025-06-20 15:42:05:425 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:3.610 ms[39m
+[35m[39m
+2025-06-20 15:42:09:429 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:3.945 ms[39m
+[35m[39m
+2025-06-20 15:45:20:4520 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:53.991 ms[39m
+[35m[39m
+2025-06-20 15:45:35:4535 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:55.629 ms[39m
+[35m[39m
+2025-06-20 15:45:42:4542 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:22.042 ms[39m
+[35m[39m
+2025-06-20 15:49:55:4955 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:54.243 ms[39m
+[35m[39m
+2025-06-20 15:49:58:4958 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:14.898 ms[39m
+[35m[39m
+2025-06-20 15:52:18:5218 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:54.183 ms[39m
+[35m[39m
+2025-06-20 15:52:50:5250 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:51.758 ms[39m
+[35m[39m
+2025-06-20 15:53:00:530 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:60.720 ms[39m
+[35m[39m
+2025-06-20 15:53:14:5314 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:8.625 ms[39m
+[35m[39m
+2025-06-20 15:53:43:5343 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:50.710 ms[39m
+[35m[39m
+2025-06-20 15:54:20:5420 [35mhttp[39m: [35mGET endpoint:/api/spend status:500 response-time:79.969 ms[39m
+[35m[39m
+2025-06-20 15:54:30:5430 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:57.578 ms[39m
+[35m[39m
+2025-06-20 15:54:46:5446 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:8.198 ms[39m
+[35m[39m
+2025-06-20 15:54:47:5447 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:3.799 ms[39m
+[35m[39m
+2025-06-20 16:43:19:4319 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:55.020 ms[39m
+[35m[39m
+2025-06-20 16:48:02:482 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:56.271 ms[39m
+[35m[39m
+2025-06-20 16:48:09:489 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:63.108 ms[39m
+[35m[39m
+2025-06-20 16:52:19:5219 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:52.846 ms[39m
+[35m[39m
+2025-06-20 16:52:37:5237 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:74.874 ms[39m
+[35m[39m
+2025-06-20 16:52:46:5246 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:67.304 ms[39m
+[35m[39m
+2025-06-20 16:54:00:540 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:94.782 ms[39m
+[35m[39m
+2025-06-20 16:54:22:5422 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:53.379 ms[39m
+[35m[39m
+2025-06-20 16:55:34:5534 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:70.765 ms[39m
+[35m[39m
+2025-06-20 16:55:45:5545 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:70.057 ms[39m
+[35m[39m
+2025-06-20 16:55:58:5558 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:52.986 ms[39m
+[35m[39m
+2025-06-20 16:57:02:572 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:66.304 ms[39m
+[35m[39m
+2025-06-20 16:58:13:5813 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:68.825 ms[39m
+[35m[39m
+2025-06-20 16:58:44:5844 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:106.883 ms[39m
+[35m[39m
+2025-06-20 16:58:50:5850 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:78.020 ms[39m
+[35m[39m
+2025-06-20 16:58:53:5853 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:7.920 ms[39m
+[35m[39m
+2025-06-20 16:59:12:5912 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:60.687 ms[39m
+[35m[39m
+2025-06-20 16:59:31:5931 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:78.649 ms[39m
+[35m[39m
+2025-06-20 16:59:46:5946 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:57.022 ms[39m
+[35m[39m
+2025-06-20 17:00:05:05 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:62.691 ms[39m
+[35m[39m
+2025-06-20 17:00:20:020 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:59.659 ms[39m
+[35m[39m
+2025-06-20 17:00:36:036 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:114.591 ms[39m
+[35m[39m
+2025-06-20 17:01:22:122 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:58.143 ms[39m
+[35m[39m
+2025-06-20 17:04:18:418 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:57.654 ms[39m
+[35m[39m
+2025-06-20 17:04:25:425 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:53.394 ms[39m
+[35m[39m
+2025-06-20 17:04:32:432 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:5.320 ms[39m
+[35m[39m
+2025-06-20 17:04:46:446 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:9.611 ms[39m
+[35m[39m
+2025-06-20 17:06:02:62 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:53.337 ms[39m
+[35m[39m
+2025-06-20 17:06:18:618 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:84.387 ms[39m
+[35m[39m
+2025-06-20 17:06:41:641 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:87.823 ms[39m
+[35m[39m
+2025-06-20 17:07:08:78 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:63.286 ms[39m
+[35m[39m
+2025-06-20 17:08:48:848 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:107.383 ms[39m
+[35m[39m
+2025-06-20 17:08:58:858 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:89.980 ms[39m
+[35m[39m
+2025-06-20 17:09:15:915 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:115.650 ms[39m
+[35m[39m
+2025-06-20 17:09:21:921 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:97.294 ms[39m
+[35m[39m
+2025-06-20 17:11:39:1139 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:62.347 ms[39m
+[35m[39m
+2025-06-20 17:11:46:1146 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:84.155 ms[39m
+[35m[39m
+2025-06-20 17:12:07:127 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:54.143 ms[39m
+[35m[39m
+2025-06-20 17:12:32:1232 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:10.256 ms[39m
+[35m[39m

@@ -18,7 +18,7 @@ class AuthService {
         const isPasswordValid = await user.comparePassword(password);
 
         if (!isPasswordValid) throw new Unauthorized("Wrong password");
-        const token = userToken.generateJwt({ name: user.name, email: user.email, userId: user.id, role: user.role });
+        const token = userToken.generateJwt({ name: user.name, email: user.email, userId: user.id, role: user.role, currency: user.currency, language: user.language });
 
         return token;
     }

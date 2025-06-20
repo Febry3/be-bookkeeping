@@ -5,12 +5,12 @@ import spendService from "./spend.service";
 class SpendController {
     public async getAllSpends(req: Request, res: Response, next: NextFunction) {
         try {
-            const { userId } = (req as any).user;
+            const { userId, currency } = (req as any).user;
             const { type, filter } = req.query;
 
             // Memanggil service dengan userId
-            const result = await spendService.getAllSpending(userId, type as string, filter as string);
-            
+            const result = await spendService.getAllSpending(userId, type as string, filter as string, currency);
+
             return res.status(StatusCodes.OK).json({
                 status: true,
                 message: "Data fetched",
@@ -27,7 +27,7 @@ class SpendController {
             const { userId } = (req as any).user;
             // Menambahkan 'spendDate' dari body
             const { spendingType, amount, description, spendDate } = req.body;
-            
+
             const data = {
                 spendingType,
                 amount,
@@ -61,7 +61,7 @@ class SpendController {
                 description,
                 createdAt: spendDate // Mapping tanggal manual
             };
-            
+
             const spend = await spendService.updateSpend(parseInt(id), dataToUpdate, userId);
 
             return res.status(StatusCodes.OK).json({ // Status OK (200) lebih cocok untuk update

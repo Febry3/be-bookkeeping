@@ -17,7 +17,9 @@ class AuthenticateUser {
                 name: payload.name,
                 email: payload.email,
                 role: payload.role,
-                userId: payload.userId
+                userId: payload.userId,
+                language: payload.language,
+                currency: payload.currency,
             }
             next();
         } catch (err) {
