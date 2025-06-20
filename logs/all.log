@@ -40,3 +40,7 @@
 [35m[39m
 2025-06-20 09:11:49:1149 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:500 response-time:10.650 ms[39m
 [35m[39m
+2025-06-20 13:59:51:5951 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:99.184 ms[39m
+[35m[39m
+2025-06-20 13:59:52:5952 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:61.907 ms[39m
+[35m[39m
