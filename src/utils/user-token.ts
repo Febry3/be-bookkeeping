@@ -10,8 +10,7 @@ export interface IPayload {
 
 class UserToken {
     public generateJwt(payload: any): string {
-        const token = jwt.sign(payload, config.jwtKey, { expiresIn: "24h" });
-
+        const token = jwt.sign(payload, config.jwtKey, { expiresIn: "1w" });
         return token;
     }
 
