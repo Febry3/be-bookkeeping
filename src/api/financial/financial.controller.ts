@@ -223,7 +223,7 @@ class FinancialController {
                 amount: liabilityValue,
                 description: paymentStatus,
                 createdAt: liabilityDate,
-                updatedAt: liabilityDueDate
+                dueDate: liabilityDueDate
             };
 
             const newLiability = await financialService.createLiability(data, userId);
@@ -281,7 +281,7 @@ class FinancialController {
                 amount: liabilityValue,
                 description: paymentStatus,
                 createdAt: liabilityDate,
-                updatedAt: liabilityDueDate
+                dueDate: liabilityDueDate
             };
 
             const updatedLiability = await financialService.updateLiability(Number(id), dataToUpdate, userId);

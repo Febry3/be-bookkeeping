@@ -2,6 +2,7 @@ import { Asset } from "../../model/asset";
 import { Liability } from "../../model/liability";
 import { Equity } from "../../model/equity";
 import NotFound from "../../errors/not-found";
+import BadRequest from "../../errors/bad-request"; // Pastikan Anda punya error class ini
 
 // --- Tipe data untuk Aset ---
 interface CreateAssetData {
@@ -40,7 +41,7 @@ interface CreateLiabilityData {
     amount: number;
     description: string;
     createdAt: Date;
-    updatedAt: Date;
+    dueDate?: Date;
 }
 interface UpdateLiabilityData {
     liabilityType?: string;
@@ -48,7 +49,7 @@ interface UpdateLiabilityData {
     amount?: number;
     description?: string;
     createdAt?: Date;
-    updatedAt?: Date;
+    dueDate?: Date;
 }
 
 
@@ -153,13 +154,25 @@ class FinancialService {
     // =============================================
 
     async createLiability(data: CreateLiabilityData, userId: number): Promise<Liability> {
+        if (data.dueDate) {
+            const oneYearFromNow = new Date();
+            oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+
+            if (data.liabilityType.toLowerCase() === 'long-term' && new Date(data.dueDate) < oneYearFromNow) {
+                throw new BadRequest("Jatuh tempo untuk liabilitas jangka panjang harus lebih dari 1 tahun.");
+            }
+            if (data.liabilityType.toLowerCase() === 'short-term' && new Date(data.dueDate) > oneYearFromNow) {
+                throw new BadRequest("Jatuh tempo untuk liabilitas jangka pendek harus kurang dari 1 tahun.");
+            }
+        }
+
         const liability = await Liability.create({
             liabilityType: data.liabilityType,
             liabilityCategory: data.liabilityCategory,
             amount: data.amount,
             description: data.description,
             createdAt: data.createdAt,
-            updatedAt: data.updatedAt,
+            dueDate: data.dueDate,
             userId: userId,
         });
         return liability;
@@ -178,12 +191,28 @@ class FinancialService {
         if (!liability) {
             throw new NotFound(`Liability dengan ID: ${id} tidak ditemukan.`);
         }
+
+        const typeToCheck = data.liabilityType ?? liability.liabilityType;
+        const dateToCheck = data.dueDate ?? liability.dueDate;
+        
+        if (dateToCheck) {
+            const oneYearFromNow = new Date();
+            oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+
+            if (typeToCheck.toLowerCase() === 'long-term' && new Date(dateToCheck) < oneYearFromNow) {
+                throw new BadRequest("Jatuh tempo untuk liabilitas jangka panjang harus lebih dari 1 tahun.");
+            }
+            if (typeToCheck.toLowerCase() === 'short-term' && new Date(dateToCheck) > oneYearFromNow) {
+                throw new BadRequest("Jatuh tempo untuk liabilitas jangka pendek harus kurang dari 1 tahun.");
+            }
+        }
+        
         liability.liabilityType = data.liabilityType ?? liability.liabilityType;
         liability.liabilityCategory = data.liabilityCategory ?? liability.liabilityCategory;
         liability.amount = data.amount ?? liability.amount;
         liability.description = data.description ?? liability.description;
         if (data.createdAt) liability.setDataValue('createdAt', data.createdAt);
-        if (data.updatedAt) liability.setDataValue('updatedAt', data.updatedAt);
+        if (data.dueDate) liability.setDataValue('dueDate', data.dueDate);
 
         await liability.save();
         return liability;
