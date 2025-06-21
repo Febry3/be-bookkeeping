@@ -20,9 +20,9 @@ class EquityController {
 
     public async createEquity(req: Request, res: Response, next: NextFunction) {
         try {
-            const { equityType, amount, description } = req.body;
+            const { equityType, amount, description, equityDate } = req.body;
             const { userId } = req.user!;
-            const spend = await equityService.createEquity(userId, equityType, amount, description);
+            const spend = await equityService.createEquity(userId, equityType, amount, description, equityDate);
 
             return res.status(StatusCodes.CREATED).json({
                 status: true,
@@ -37,10 +37,10 @@ class EquityController {
 
     public async updateSpend(req: Request, res: Response, next: NextFunction) {
         try {
-            const { spendingType, amount, description } = req.body;
+            const { spendingType, amount, description, equityDate } = req.body;
             const { userId } = req.user!;
             const { equityId } = req.params;
-            const equity = await equityService.updateEquity(parseInt(equityId), userId, spendingType, amount, description);
+            const equity = await equityService.updateEquity(parseInt(equityId), userId, spendingType, amount, description, equityDate);
 
             return res.status(StatusCodes.CREATED).json({
                 status: true,

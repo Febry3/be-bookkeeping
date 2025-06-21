@@ -3,28 +3,35 @@ import { Equity, User } from "../../model";
 
 class EquityService {
     public async getAllEquity(userId: number) {
-        const equities = await Equity.findAll({ where: { userId: userId }, include: { model: User, as: "user" } });
+        const equities = await Equity.findAll({ where: { userId: userId }, include: { model: User, as: "user" }, order: [['createdAt', 'DESC']] });
         return equities;
     }
 
-    public async createEquity(userId: number, equityType: string, amount: number, description: string) {
+    async getEquityById(id: number, userId: number): Promise<Equity | null> {
+        return await Equity.findOne({ where: { equityId: id, userId } });
+    }
+
+    public async createEquity(userId: number, equityType: string, amount: number, description: string, createdAt: Date) {
         const equities = await Equity.create({
             equityType: equityType,
             amount: amount,
             description: description,
-            userId: userId
+            userId: userId,
+            createdAt: createdAt
         });
         return equities;
     }
 
-    public async updateEquity(equityId: number, userId: number, equityType: string, amount: number, description: string) {
+    public async updateEquity(equityId: number, userId: number, equityType: string, amount: number, description: string, createdAt: Date) {
         const equity = await Equity.findOne({ where: { equityId: equityId, userId: userId } });
         if (!equity) throw new NotFound(`There are no spend data with id: ${equityId} or userId: ${userId}`);
-        equity.update({
-            equityType: equityType,
-            amount: amount,
-            description: description
-        });
+        equity.equityType = equityType ?? equity.equityType;
+        equity.amount = amount ?? equity.amount;
+        equity.description = description ?? equity.description;
+        if (createdAt) equity.setDataValue('createdAt', createdAt);
+
+        await equity.save();
+        return equity;
     }
 
     public async deleteEquity(equityId: number, userId: number) {
