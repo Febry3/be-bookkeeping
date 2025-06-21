@@ -1,8 +1,7 @@
 import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
-import { AfterFind } from "sequelize-typescript";
-import ConversionRate from "../config/conversion-rate";
+import moneyConverter from "../utils/money-converter";
 
 interface SpendAttributes {
     spendId: number,
@@ -67,17 +66,7 @@ Spend.init({
     sequelize: database.sequelize,
     modelName: "Spend",
     hooks: {
-        afterFind: (instances) => {
-            const instancesArray = Array.isArray(instances) ? instances : [instances].filter(Boolean);
-            for (const instance of instancesArray) {
-                if (instance.user && instance.user.currency) {
-                    const rate = parseFloat(ConversionRate[instance.user.currency]);
-                    const convertedValue = parseFloat((instance.getDataValue('amount') * rate).toFixed(2));
-                    instance.dataValues.convertedAmount = convertedValue;
-                }
-                delete instance.dataValues.user;
-            }
-        }
+        afterFind: (instances) => moneyConverter.addConvertedAmount(instances),
     }
 });
 

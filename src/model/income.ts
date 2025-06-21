@@ -1,6 +1,7 @@
 import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 import database from "../config/database";
 import { User } from "./user";
+import moneyConverter from "../utils/money-converter";
 
 interface IncomeAttributes {
     incomeId: number,
@@ -9,6 +10,7 @@ interface IncomeAttributes {
     description: string,
     userId: number,
     createdAt: Date,
+    convertedAmount?: number,
 }
 
 class Income extends Model<InferAttributes<Income>, InferCreationAttributes<Income>> {
@@ -19,6 +21,7 @@ class Income extends Model<InferAttributes<Income>, InferCreationAttributes<Inco
     declare userId: ForeignKey<User['id']>;
     declare createdAt: CreationOptional<Date>;
     declare updatedAt: CreationOptional<Date>; // Ditambahkan untuk konsistensi dengan timestamps:true
+    declare convertedAmount?: number;
 }
 
 Income.init({
@@ -78,9 +81,21 @@ Income.init({
     }
 }, {
     tableName: "Incomes",
-    timestamps: true, // Opsi ini akan mengelola createdAt dan updatedAt secara otomatis
+    timestamps: true,
     sequelize: database.sequelize,
     modelName: "Income",
+    hooks: {
+        afterFind: (instances) => {
+            const instancesArray = Array.isArray(instances) ? instances : [instances].filter(Boolean);
+            for (const instance of instancesArray) {
+                if (instance.user && instance.user.currency) {
+                    const convertedValue = moneyConverter.convertTo(instance.user.currency, instance.getDataValue('amount'));
+                    instance.dataValues.convertedAmount = convertedValue;
+                }
+                delete instance.dataValues.user;
+            }
+        }
+    }
 });
 
 Income.belongsTo(User, {

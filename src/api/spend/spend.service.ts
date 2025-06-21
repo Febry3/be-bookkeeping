@@ -34,7 +34,7 @@ class SpendService {
 
         // PERBAIKAN PENTING: Menambahkan filter userId
         const whereConditions: WhereOptions<SpendAttributes> = {
-            userId: userId
+            userId: userId,
         };
 
         if (type) {
@@ -54,7 +54,7 @@ class SpendService {
             include: [{
                 model: User,
                 as: "user"
-            }]
+            }],
         });
 
         let totalStockSpending: number = 0;

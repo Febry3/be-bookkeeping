@@ -2,6 +2,7 @@ import { literal, Op, WhereOptions } from "sequelize";
 import { Income, IncomeAttributes } from "../../model/income";
 import NotFound from "../../errors/not-found";
 import { Spend } from "../../model/spend";
+import { User } from "../../model";
 
 // Tipe data untuk Income
 interface CreateIncomeData {
@@ -50,7 +51,11 @@ class IncomeService {
 
         const incomes = await Income.findAll({
             where: whereConditions,
-            order: [['createdAt', 'DESC']]
+            order: [['createdAt', 'DESC']],
+            include: {
+                model: User,
+                as: "user"
+            }
         });
 
         let totalMainIncome = 0;
@@ -59,12 +64,12 @@ class IncomeService {
 
         for (const income of incomes) {
             if (income.type.toLowerCase() === "main") {
-                totalMainIncome += income.amount;
+                totalMainIncome += income.dataValues.convertedAmount!;
             }
             if (income.type.toLowerCase() === "side") {
-                totalSideIncome += income.amount;
+                totalSideIncome += income.dataValues.convertedAmount!;
             }
-            totalAllIncome += income.amount;
+            totalAllIncome += income.dataValues.convertedAmount!;
         }
 
         return {
@@ -94,7 +99,7 @@ class IncomeService {
         if (!income) {
             throw new NotFound(`Tidak ada data pendapatan dengan id: ${id}`);
         }
-        
+
         income.type = data.type ?? income.type;
         income.amount = data.amount ?? income.amount;
         income.description = data.description ?? income.description;

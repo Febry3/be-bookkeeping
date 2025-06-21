@@ -3,6 +3,7 @@ import { Liability } from "../../model/liability";
 import { Equity } from "../../model/equity";
 import NotFound from "../../errors/not-found";
 import BadRequest from "../../errors/bad-request"; // Pastikan Anda punya error class ini
+import { User } from "../../model";
 
 // --- Tipe data untuk Aset ---
 interface CreateAssetData {
@@ -72,11 +73,11 @@ class FinancialService {
     }
 
     async getAllAssets(userId: number): Promise<Asset[]> {
-        return await Asset.findAll({ where: { userId }, order: [['createdAt', 'DESC']] });
+        return await Asset.findAll({ where: { userId }, order: [['createdAt', 'DESC']], include: { model: User, as: "user" } });
     }
 
     async getAssetById(id: number, userId: number): Promise<Asset | null> {
-        return await Asset.findOne({ where: { assetId: id, userId } });
+        return await Asset.findOne({ where: { assetId: id, userId }, include: { model: User, as: "user" } });
     }
 
     async updateAsset(id: number, data: UpdateAssetData, userId: number): Promise<Asset> {
@@ -153,7 +154,7 @@ class FinancialService {
     // ================= LIABILITY =================
     // =============================================
 
-     // =============================================
+    // =============================================
     async createLiability(data: CreateLiabilityData, userId: number): Promise<Liability> {
         if (data.dueDate) {
             const oneYearFromNow = new Date();
@@ -195,7 +196,7 @@ class FinancialService {
 
         const typeToCheck = data.liabilityType ?? liability.liabilityType;
         const dateToCheck = data.dueDate ?? liability.dueDate;
-        
+
         if (dateToCheck) {
             const oneYearFromNow = new Date();
             oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
@@ -207,7 +208,7 @@ class FinancialService {
                 throw new BadRequest("Jatuh tempo untuk liabilitas jangka pendek harus kurang dari 1 tahun.");
             }
         }
-        
+
         liability.liabilityType = data.liabilityType ?? liability.liabilityType;
         liability.liabilityCategory = data.liabilityCategory ?? liability.liabilityCategory;
         liability.amount = data.amount ?? liability.amount;

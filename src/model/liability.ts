@@ -8,7 +8,8 @@ import {
 } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
-import ConversionRate from "../config/conversion-rate";
+import ConversionRate from "../utils/money-converter";
+import moneyConverter from "../utils/money-converter";
 
 // Interface ini tidak wajib tapi bisa membantu
 interface LiabilityAttributes {
@@ -93,8 +94,7 @@ Liability.init({
             const instancesArray = Array.isArray(instances) ? instances : [instances].filter(Boolean);
             for (const instance of instancesArray) {
                 if (instance.user && instance.user.currency) {
-                    const rate = parseFloat(ConversionRate[instance.user.currency]);
-                    const convertedValue = parseFloat((instance.getDataValue('amount') * rate).toFixed(2));
+                    const convertedValue = moneyConverter.convertTo(instance.user.currency, instance.getDataValue('amount'));
                     instance.dataValues.convertedAmount = convertedValue;
                 }
                 delete instance.dataValues.user;

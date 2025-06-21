@@ -302,3 +302,45 @@
 [35m[39m
 2025-06-20 23:48:23:4823 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:105.243 ms[39m
 [35m[39m
+2025-06-21 17:50:03:503 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:108.369 ms[39m
+[35m[39m
+2025-06-21 17:50:17:5017 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:27.367 ms[39m
+[35m[39m
+2025-06-21 17:51:10:5110 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:9.049 ms[39m
+[35m[39m
+2025-06-21 17:51:37:5137 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:68.427 ms[39m
+[35m[39m
+2025-06-21 17:51:59:5159 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:143.253 ms[39m
+[35m[39m
+2025-06-21 17:52:39:5239 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:73.111 ms[39m
+[35m[39m
+2025-06-21 17:53:01:531 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:69.043 ms[39m
+[35m[39m
+2025-06-21 17:54:13:5413 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:57.368 ms[39m
+[35m[39m
+2025-06-21 17:54:59:5459 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:19.414 ms[39m
+[35m[39m
+2025-06-21 17:55:39:5539 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:58.208 ms[39m
+[35m[39m
+2025-06-21 17:55:46:5546 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:62.142 ms[39m
+[35m[39m
+2025-06-21 17:56:32:5632 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:61.096 ms[39m
+[35m[39m
+2025-06-21 17:58:00:580 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:56.340 ms[39m
+[35m[39m
+2025-06-21 17:58:01:581 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:5.705 ms[39m
+[35m[39m
+2025-06-21 17:58:06:586 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:7.250 ms[39m
+[35m[39m
+2025-06-21 17:58:25:5825 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:9.470 ms[39m
+[35m[39m
+2025-06-21 17:58:32:5832 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:5.052 ms[39m
+[35m[39m
+2025-06-21 18:02:01:21 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:58.502 ms[39m
+[35m[39m
+2025-06-21 18:02:03:23 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:6.030 ms[39m
+[35m[39m
+2025-06-21 18:02:08:28 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:7.104 ms[39m
+[35m[39m
+2025-06-21 18:02:33:233 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:10.057 ms[39m
+[35m[39m

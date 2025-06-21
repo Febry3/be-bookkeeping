@@ -12,4 +12,4 @@ class Config {
     jwtExpiration: string = "24h";
 }
 
-export default new Config();
+export default new Config;
