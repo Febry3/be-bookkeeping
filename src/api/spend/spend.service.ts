@@ -21,7 +21,7 @@ interface UpdateSpendData {
 
 class SpendService {
     // --- FUNGSI INI DIPERBAIKI SECARA TOTAL ---
-    public async getAllSpending(userId: number, type: string, filter: string, currency: string) {
+    public async getAllSpending(userId: number, type: string, filter: string) {
         let endDate: string = "";
 
         if (filter === "weekly") {
@@ -68,7 +68,6 @@ class SpendService {
         }
 
         return {
-            currency: currency,
             totalStockSpending: totalStockSpending,
             totalAllSpending: totalAllSpending,
             spends: spends,

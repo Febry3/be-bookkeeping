@@ -5,11 +5,11 @@ import spendService from "./spend.service";
 class SpendController {
     public async getAllSpends(req: Request, res: Response, next: NextFunction) {
         try {
-            const { userId, currency } = (req as any).user;
+            const { userId } = (req as any).user;
             const { type, filter } = req.query;
 
             // Memanggil service dengan userId
-            const result = await spendService.getAllSpending(userId, type as string, filter as string, currency);
+            const result = await spendService.getAllSpending(userId, type as string, filter as string);
 
             return res.status(StatusCodes.OK).json({
                 status: true,

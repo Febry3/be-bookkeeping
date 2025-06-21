@@ -344,3 +344,31 @@
 [35m[39m
 2025-06-21 18:02:33:233 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:10.057 ms[39m
 [35m[39m
+2025-06-21 18:04:59:459 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:62.037 ms[39m
+[35m[39m
+2025-06-21 18:05:11:511 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:65.055 ms[39m
+[35m[39m
+2025-06-21 18:07:51:751 [35mhttp[39m: [35mGET endpoint:/api/liability status:500 response-time:11.464 ms[39m
+[35m[39m
+2025-06-21 18:08:05:85 [35mhttp[39m: [35mGET endpoint:/api/liability status:200 response-time:56.368 ms[39m
+[35m[39m
+2025-06-21 18:08:25:825 [35mhttp[39m: [35mGET endpoint:/api/liability status:200 response-time:7.600 ms[39m
+[35m[39m
+2025-06-21 18:08:29:829 [35mhttp[39m: [35mGET endpoint:/api/liability status:200 response-time:4.334 ms[39m
+[35m[39m
+2025-06-21 18:08:32:832 [35mhttp[39m: [35mGET endpoint:/api/liability status:200 response-time:4.318 ms[39m
+[35m[39m
+2025-06-21 18:08:36:836 [35mhttp[39m: [35mGET endpoint:/api/liability status:200 response-time:4.455 ms[39m
+[35m[39m
+2025-06-21 18:10:27:1027 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:58.877 ms[39m
+[35m[39m
+2025-06-21 18:10:33:1033 [35mhttp[39m: [35mGET endpoint:/api/income status:200 response-time:7.621 ms[39m
+[35m[39m
+2025-06-21 18:11:54:1154 [35mhttp[39m: [35mGET endpoint:/api/equity status:404 response-time:8.777 ms[39m
+[35m[39m
+2025-06-21 18:12:26:1226 [35mhttp[39m: [35mGET endpoint:/api/equity status:401 response-time:10.685 ms[39m
+[35m[39m
+2025-06-21 18:12:41:1241 [35mhttp[39m: [35mGET endpoint:/api/equity status:500 response-time:110.421 ms[39m
+[35m[39m
+2025-06-21 18:14:28:1428 [35mhttp[39m: [35mGET endpoint:/api/equity status:200 response-time:59.561 ms[39m
+[35m[39m

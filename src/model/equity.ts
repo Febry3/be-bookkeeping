@@ -8,6 +8,7 @@ import {
 } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
+import moneyConverter from "../utils/money-converter";
 
 interface EquityAttributes {
     equityId: number;
@@ -17,6 +18,7 @@ interface EquityAttributes {
     createdAt?: Date;
     updatedAt?: Date;
     userId: number;
+    convertedAmount?: number;
 }
 
 class Equity extends Model<InferAttributes<Equity>, InferCreationAttributes<Equity>> {
@@ -27,6 +29,7 @@ class Equity extends Model<InferAttributes<Equity>, InferCreationAttributes<Equi
     declare createdAt: CreationOptional<Date>;
     declare updatedAt: CreationOptional<Date>;
     declare userId: ForeignKey<User['id']>;
+    declare convertedAmount?: number;
 }
 
 Equity.init({
@@ -77,6 +80,9 @@ Equity.init({
     timestamps: true,
     sequelize: database.sequelize,
     modelName: "Equity",
+    hooks: {
+        afterFind: (instances) => moneyConverter.addConvertedAmount(instances),
+    }
 });
 
 Equity.belongsTo(User, {

@@ -16,6 +16,7 @@ class MoneyConverter {
                 const convertedValue = this.convertTo(instance.user.currency, instance.getDataValue('amount'));
                 instance.dataValues.convertedAmount = convertedValue;
             }
+            instance.dataValues.currency = instance.user.currency;
             delete instance.dataValues.user;
         }
     }

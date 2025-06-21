@@ -1,13 +1,15 @@
 import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
+import moneyConverter from "../utils/money-converter";
 
 interface InvestationAttributes {
     investationId: number,
     investationType: string,
     investationCategory: string,
     amount: number,
-    userId: number
+    userId: number,
+    convertedAmaount?: number
 }
 
 class Investation extends Model<InferAttributes<Investation>, InferCreationAttributes<Investation>> {
@@ -16,6 +18,7 @@ class Investation extends Model<InferAttributes<Investation>, InferCreationAttri
     declare investationCategory: string;
     declare amount: number;
     declare userId: ForeignKey<User['id']>;
+    declare convertedAmaount?: number
 }
 
 Investation.init({
@@ -51,13 +54,16 @@ Investation.init({
     timestamps: true,
     sequelize: database.sequelize,
     modelName: "Investations",
+    hooks: {
+        afterFind: (instances) => moneyConverter.addConvertedAmount(instances),
+    }
 });
 
 Investation.belongsTo(User, {
     foreignKey: 'userId',
     targetKey: 'id',
     as: "user",
-    onDelete: "CASCADE"
+    onDelete: "CASCADE",
 });
 
 export { Investation, InvestationAttributes };

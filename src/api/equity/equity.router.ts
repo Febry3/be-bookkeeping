@@ -4,9 +4,9 @@ import equityController from "./equity.controller";
 
 const { router } = express();
 
-router.get('/income', authenticateUser.authenticateUser, equityController.getAllEquities as RequestHandler);
-router.post('/income', authenticateUser.authenticateUser, equityController.createEquity as RequestHandler);
-router.put('/income/:id', authenticateUser.authenticateUser, equityController.updateSpend as RequestHandler);
-router.delete('/income/:id', authenticateUser.authenticateUser, equityController.deleteSpend as RequestHandler);
+router.get('/equity', authenticateUser.authenticateUser, equityController.getAllEquities as RequestHandler);
+router.post('/equity', authenticateUser.authenticateUser, equityController.createEquity as RequestHandler);
+router.put('/equity/:id', authenticateUser.authenticateUser, equityController.updateSpend as RequestHandler);
+router.delete('/equity/:id', authenticateUser.authenticateUser, equityController.deleteSpend as RequestHandler);
 
 export { router };

@@ -1,9 +1,9 @@
 import NotFound from "../../errors/not-found";
-import { Equity } from "../../model";
+import { Equity, User } from "../../model";
 
 class EquityService {
     public async getAllEquity(userId: number) {
-        const equities = await Equity.findAll({ where: { userId: userId } });
+        const equities = await Equity.findAll({ where: { userId: userId }, include: { model: User, as: "user" } });
         return equities;
     }
 
