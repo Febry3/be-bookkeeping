@@ -9,11 +9,13 @@ import { router as equityRouter } from "./api/equity/equity.router";
 import { router as balanceSheetRouter } from "./api/balance-sheet/balance-sheet.router";
 import errorHandlerMiddleware from "./middlewares/handle-error";
 import cookieParser from 'cookie-parser';
+import swaggerUi from 'swagger-ui-express';
 
 import {
   User, Income, Asset, Equity, Investation, Liability, Loan, Spend
 } from './model';
 import morganMiddleware from "./middlewares/morgan";
+import { swaggerSpec } from "./swagger/swagger";
 
 // Import semua model
 const app = express();
@@ -23,6 +25,7 @@ app.use(json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(morganMiddleware);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Router
 app.use('/api', authRouter);

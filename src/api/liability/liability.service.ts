@@ -8,7 +8,7 @@ class LiabilityService {
         return liabilities;
     }
 
-    public async getLiabilityById(userId: number) {
+    public async getLiabilityById(liabilityId: number, userId: number) {
         const liabilities = await Liability.findOne({ where: { userId: userId }, include: { model: User, as: "user" }, order: [['createdAt', 'DESC']] });
         return liabilities;
     }

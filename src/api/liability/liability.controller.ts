@@ -19,12 +19,27 @@ class LiabilityController {
         }
     }
 
+    public async getLiabilityById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { liabilityId } = req.params;
+            const liability = await liabilityService.getLiabilityById(parseInt(liabilityId), userId);
+            return res.status(200).json({
+                status: true,
+                message: "Data liabilitas berhasil ditemukan",
+                data: liability
+            });
+        } catch (e) {
+            console.error(e);
+            next(e);
+        }
+    }
 
     public async createLiability(req: Request, res: Response, next: NextFunction) {
         try {
             const { userId } = req.user!;
-            const { liabilityType, liabilityCategory, amount, description } = req.body;
-            const data = await liabilityService.createLiability(userId, liabilityType, liabilityCategory, amount, description);
+            const { liabilityType, liabilityCategory, amount, description, createdAt, dueDate } = req.body;
+            const data = await liabilityService.createLiability(userId, liabilityType, liabilityCategory, amount, description, createdAt, dueDate);
 
             return res.status(StatusCodes.CREATED).json({
                 status: true,
@@ -42,8 +57,8 @@ class LiabilityController {
         try {
             const { userId } = req.user!;
             const { liabilityId } = req.params;
-            const { liabilityType, liabilityCategory, amount, description } = req.body;
-            const data = await liabilityService.updateLiability(parseInt(liabilityId), userId, liabilityType, liabilityCategory, amount, description);
+            const { liabilityType, liabilityCategory, amount, description, createdAt, dueDate } = req.body;
+            const data = await liabilityService.updateLiability(parseInt(liabilityId), userId, liabilityType, liabilityCategory, amount, description, createdAt, dueDate);
 
             return res.status(StatusCodes.OK).json({
                 status: true,

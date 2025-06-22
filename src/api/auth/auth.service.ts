@@ -5,9 +5,6 @@ import Unauthorized from "../../errors/unauthorized";
 import userToken from "../../utils/user-token";
 import Duplicate from "../../errors/duplicate";
 import { ValidationError } from "sequelize";
-import { loggers } from "winston";
-import Logger from "../../config/logger";
-
 
 class AuthService {
     public async login(req: Request): Promise<string> {
