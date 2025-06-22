@@ -66,7 +66,6 @@ Liability.init({
     description: {
         type: DataTypes.STRING,
     },
-    // Field baru untuk tanggal jatuh tempo
     dueDate: {
         type: DataTypes.DATE,
         allowNull: true,
