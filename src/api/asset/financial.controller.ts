@@ -1,0 +1,114 @@
+import { NextFunction, Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
+import financialService from "./financial.service";
+
+class FinancialController {
+
+    // =============================================
+    // ========= KONTROLER UNTUK ASET (ASSET) ======
+    // =============================================
+
+    public async createAsset(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { assetName, assetValue, assetType, assetDate, assetDescription } = req.body;
+
+            const data = {
+                assetCategory: assetName,
+                amount: assetValue,
+                assetType: assetType,
+                createdAt: assetDate,
+                description: assetDescription
+            };
+
+            const newAsset = await financialService.createAsset(data, userId);
+            return res.status(StatusCodes.CREATED).json({
+                status: true,
+                message: "Data aset berhasil dibuat",
+                data: newAsset
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async getAllAssets(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const allAssets = await financialService.getAllAssets(userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Semua data aset berhasil diambil",
+                data: allAssets
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async getAssetById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            const asset = await financialService.getAssetById(Number(id), userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data aset berhasil ditemukan",
+                data: asset
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async updateAsset(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            const { assetName, assetValue, assetType, assetDate, assetDescription } = req.body;
+
+            const dataToUpdate = {
+                assetCategory: assetName,
+                amount: assetValue,
+                assetType: assetType,
+                createdAt: assetDate,
+                description: assetDescription
+            };
+
+            const updatedAsset = await financialService.updateAsset(Number(id), dataToUpdate, userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data aset berhasil diperbarui",
+                data: updatedAsset
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+
+    public async deleteAsset(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId } = (req as any).user;
+            const { id } = req.params;
+            await financialService.deleteAsset(Number(id), userId);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Data aset berhasil dihapus",
+                data: null
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+    
+
+    
+}
+ 
+
+export default new FinancialController();
