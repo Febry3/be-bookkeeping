@@ -1,8 +1,5 @@
 import { Asset } from "../../model/asset";
-import { Liability } from "../../model/liability";
-import { Equity } from "../../model/equity";
 import NotFound from "../../errors/not-found";
-import BadRequest from "../../errors/bad-request"; // Pastikan Anda punya error class ini
 import { User } from "../../model";
 
 // --- Tipe data untuk Aset ---
@@ -21,45 +18,7 @@ interface UpdateAssetData {
     createdAt?: Date;
 }
 
-// --- Tipe data untuk Ekuitas ---
-interface CreateEquityData {
-    equityType: string;
-    amount: number;
-    description: string;
-    createdAt: Date;
-}
-interface UpdateEquityData {
-    equityType?: string;
-    amount?: number;
-    description?: string;
-    createdAt?: Date;
-}
-
-// --- Tipe data untuk Liabilitas ---
-interface CreateLiabilityData {
-    liabilityType: string;
-    liabilityCategory: string;
-    amount: number;
-    description: string;
-    createdAt: Date;
-    dueDate?: Date;
-}
-interface UpdateLiabilityData {
-    liabilityType?: string;
-    liabilityCategory?: string;
-    amount?: number;
-    description?: string;
-    createdAt?: Date;
-    dueDate?: Date;
-}
-
-
-class FinancialService {
-
-    // =============================================
-    // =================== ASSET ===================
-    // =============================================
-
+class AssetService {
     async createAsset(data: CreateAssetData, userId: number): Promise<Asset> {
         const asset = await Asset.create({
             assetType: data.assetType,
@@ -106,4 +65,4 @@ class FinancialService {
 
 }
 
-export default new FinancialService();
+export default new AssetService;

@@ -3,8 +3,6 @@ import { Asset, Equity, Liability, User } from "../../model";
 
 class BalanceSheetService {
     public async getBalanceSheetData(userId: number, startDate?: string, endDate?: string) {
-        console.log(startDate, endDate)
-
         const whereClause: any = {
             userId: userId
         };
@@ -17,7 +15,7 @@ class BalanceSheetService {
 
         const liabilitesData = await Liability.findAll({
             attributes: [
-                [Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y'), 'createdAt'],
+                [Sequelize.fn('DATE_FORMAT', Sequelize.col('Liability.createdAt'), '%d-%m-%Y'), 'createdAt'],
                 [
                     Sequelize.fn(
                         'JSON_ARRAYAGG',
@@ -26,20 +24,24 @@ class BalanceSheetService {
                             'liabilityType', Sequelize.col('liabilityType'),
                             'liabilityCategory', Sequelize.col('liabilityCategory'),
                             'amount', Sequelize.col('amount'),
-                            'description', Sequelize.col('description')
+                            'description', Sequelize.col('description'),
                         )
                     ),
                     'liabilities'
-                ]
+                ],
             ],
             group: [Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y')],
             order: [[Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y'), 'DESC']],
-            where: whereClause
+            where: whereClause,
+            include: {
+                model: User,
+                as: "user"
+            }
         });
 
         const equitiesData = await Equity.findAll({
             attributes: [
-                [Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y'), 'createdAt'],
+                [Sequelize.fn('DATE_FORMAT', Sequelize.col('Equity.createdAt'), '%d-%m-%Y'), 'createdAt'],
                 [
                     Sequelize.fn(
                         'JSON_ARRAYAGG',
@@ -55,12 +57,16 @@ class BalanceSheetService {
             ],
             group: [Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y')],
             order: [[Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y'), 'DESC']],
-            where: whereClause
+            where: whereClause,
+            include: {
+                model: User,
+                as: "user"
+            }
         });
 
         const assetsData = await Asset.findAll({
             attributes: [
-                [Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y'), 'createdAt'],
+                [Sequelize.fn('DATE_FORMAT', Sequelize.col('Asset.createdAt'), '%d-%m-%Y'), 'createdAt'],
                 [
                     Sequelize.fn(
                         'JSON_ARRAYAGG',
@@ -76,24 +82,47 @@ class BalanceSheetService {
             ],
             group: [Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y')],
             order: [[Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y'), 'DESC']],
-            where: whereClause
+            where: whereClause,
+            include: {
+                model: User,
+                as: "user"
+            }
         });
 
         const [liabilities, assets, equities] = await Promise.all([
-            Liability.findAll({ where: whereClause }),
-            Asset.findAll({ where: whereClause }),
-            Equity.findAll({ where: whereClause }),
+            Liability.findAll({
+                where: whereClause,
+                include: {
+                    model: User,
+                    as: "user"
+                }
+            },),
+            Asset.findAll({
+                where: whereClause,
+                include: {
+                    model: User,
+                    as: "user"
+                }
+            }),
+            Equity.findAll({
+                where: whereClause,
+                include: {
+                    model: User,
+                    as: "user"
+                }
+            }),
         ]);
         const totalLiabilities = liabilities.reduce((sum, curr) => {
-            return sum + curr.amount;
+            console.log(curr)
+            return sum + curr.dataValues.convertedAmount!;
         }, 0);
 
         const totalEquities = equities.reduce((sum, curr) => {
-            return sum + curr.amount;
+            return sum + curr.dataValues.convertedAmount!;
         }, 0);
 
         const totalAssets = assets.reduce((sum, curr) => {
-            return sum + curr.amount;
+            return sum + curr.dataValues.convertedAmount!;
         }, 0);
 
         return { startDate, endDate, totalLiabilities, totalEquities, totalAssets, liabilitesData, equitiesData, assetsData }
