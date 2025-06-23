@@ -2,7 +2,7 @@ import express, { json } from "express";
 import config from "./config/config";
 import { router as authRouter } from "./api/auth/auth.router";
 import { router as incomeRouter } from "./api/income/income.router";
-import { router as financialRouter } from "./api/financial/financial.router";
+import { router as financialRouter } from "./api/asset/financial.router";
 import { router as spendRouter } from "./api/spend/spend.router";
 import { router as liabilityRouter } from "./api/liability/liability.router";
 import { router as equityRouter } from "./api/equity/equity.router";
