@@ -3,7 +3,7 @@ import { Equity, User } from "../../model";
 
 class EquityService {
     public async getAllEquity(userId: number) {
-        const equities = await Equity.findAll({ where: { userId: userId }, include: { model: User, as: "user" }, order: [['createdAt', 'DESC']] });
+        const equities = await Equity.findAll({ where: { userId: userId }, include: { model: User, as: "user" }, order: [['createdAt', 'DESC']], includeConversion: true } as any);
         return equities;
     }
 
