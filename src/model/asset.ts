@@ -3,13 +3,13 @@
 import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, CreationOptional, NonAttribute } from "sequelize";
 import { User } from "./user";
 import database from "../config/database";
-import ConversionRate from "../utils/money-converter";
 import moneyConverter from "../utils/money-converter";
 
 class Asset extends Model<InferAttributes<Asset>, InferCreationAttributes<Asset>> {
     declare assetId: CreationOptional<number>;
     declare assetType: string;
     declare assetCategory: string;
+    declare assetName: string;
     declare amount: number;
     declare description: CreationOptional<string>;
     declare userId: ForeignKey<User['id']>;
@@ -32,6 +32,10 @@ Asset.init({
     assetCategory: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    assetName: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     amount: {
         type: DataTypes.DECIMAL(20, 2),
@@ -73,7 +77,11 @@ Asset.init({
     sequelize: database.sequelize,
     modelName: "Asset",
     hooks: {
-        afterFind: (instances) => moneyConverter.addConvertedAmount(instances),
+        afterFind: (instances, options) => {
+            if ((options as any).includeConversion) {
+                moneyConverter.addConvertedAmount(instances);
+            }
+        }
     }
 });
 

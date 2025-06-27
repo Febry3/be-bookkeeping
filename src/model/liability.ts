@@ -89,7 +89,11 @@ Liability.init({
     sequelize: database.sequelize,
     modelName: "Liability",
     hooks: {
-        afterFind: (instances) => moneyConverter.addConvertedAmount(instances),
+        afterFind: (instances, options) => {
+            if ((options as any).includeConversion) {
+                moneyConverter.addConvertedAmount(instances);
+            }
+        }
     }
 });
 

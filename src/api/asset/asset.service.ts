@@ -4,6 +4,7 @@ import { User } from "../../model";
 
 // --- Tipe data untuk Aset ---
 interface CreateAssetData {
+    assetName: string,
     assetType: string;
     assetCategory: string;
     amount: number;
@@ -21,6 +22,7 @@ interface UpdateAssetData {
 class AssetService {
     async createAsset(data: CreateAssetData, userId: number): Promise<Asset> {
         const asset = await Asset.create({
+            assetName: data.assetName,
             assetType: data.assetType,
             assetCategory: data.assetCategory,
             amount: data.amount,

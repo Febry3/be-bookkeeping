@@ -1,4 +1,4 @@
-import { Op, Sequelize, where } from "sequelize";
+import { Op, Sequelize } from "sequelize";
 import { Asset, Equity, Liability, User } from "../../model";
 
 class BalanceSheetService {
@@ -33,10 +33,6 @@ class BalanceSheetService {
             group: [Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y')],
             order: [[Sequelize.fn('DATE_FORMAT', Sequelize.col('createdAt'), '%d-%m-%Y'), 'DESC']],
             where: whereClause,
-            include: {
-                model: User,
-                as: "user"
-            }
         });
 
         const equitiesData = await Equity.findAll({
@@ -95,8 +91,9 @@ class BalanceSheetService {
                 include: {
                     model: User,
                     as: "user"
-                }
-            },),
+                },
+                includeConversion: true
+            } as any,),
             Asset.findAll({
                 where: whereClause,
                 include: {
@@ -113,7 +110,6 @@ class BalanceSheetService {
             }),
         ]);
         const totalLiabilities = liabilities.reduce((sum, curr) => {
-            console.log(curr)
             return sum + curr.dataValues.convertedAmount!;
         }, 0);
 
