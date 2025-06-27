@@ -10,7 +10,7 @@ import { router as balanceSheetRouter } from "./api/balance-sheet/balance-sheet.
 import errorHandlerMiddleware from "./middlewares/handle-error";
 import cookieParser from 'cookie-parser';
 import swaggerUi from 'swagger-ui-express';
-import cors from 'cors';
+//import cors from 'cors';
 import {
   User, Income, Asset, Equity, Investation, Liability, Loan, Spend
 } from './model';
@@ -21,7 +21,7 @@ import { swaggerSpec } from "./swagger/swagger";
 const app = express();
 
 // Middleware
-app.use(cors());
+//app.use(cors());
 app.use(json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
