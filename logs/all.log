@@ -1770,3 +1770,45 @@
 [35m[39m
 2025-06-27 15:52:09:529 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.541 ms[39m
 [35m[39m
+2025-06-27 15:54:48:5448 [35mhttp[39m: [35mPOST endpoint:/api/assets status:201 response-time:40.970 ms[39m
+[35m[39m
+2025-06-27 15:54:51:5451 [35mhttp[39m: [35mGET endpoint:/api/assets status:200 response-time:14.119 ms[39m
+[35m[39m
+2025-06-27 15:55:47:5547 [35mhttp[39m: [35mGET endpoint:/api/assets status:200 response-time:48.186 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:3.115 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.825 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:0.621 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:0.397 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:200 response-time:0.589 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.741 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:3.183 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.255 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:0.604 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:0.488 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:200 response-time:0.826 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.578 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:3.284 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.169 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:0.463 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:0.465 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:200 response-time:0.707 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.555 ms[39m
+[35m[39m

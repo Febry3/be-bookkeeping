@@ -48,10 +48,52 @@ export { router };
  *               - assetType
  *               - assetCategory
  *               - assetValue
- *               - assetDescription
  *     responses:
  *       201:
  *         description: Asset created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Data aset berhasil dibuat
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     assetId:
+ *                       type: integer
+ *                       example: 2
+ *                     assetName:
+ *                       type: string
+ *                       example: Mobil Legend
+ *                     assetType:
+ *                       type: string
+ *                       example: test
+ *                     assetCategory:
+ *                       type: string
+ *                       example: test
+ *                     amount:
+ *                       type: number
+ *                       example: 80000
+ *                     description:
+ *                       type: string
+ *                       example: test
+ *                     userId:
+ *                       type: integer
+ *                       example: 3
+ *                     createdAt:
+ *                       type: string
+ *                       format: date-time
+ *                       example: 2000-12-12T00:00:00.000Z
+ *                     updatedAt:
+ *                       type: string
+ *                       format: date-time
+ *                       example: 2025-06-27T08:54:48.000Z
  *       400:
  *         description: Invalid request data
  *       401:
@@ -70,6 +112,51 @@ export { router };
  *     responses:
  *       200:
  *         description: A list of assets
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Semua data aset berhasil diambil
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       assetId:
+ *                         type: integer
+ *                         example: 2
+ *                       assetName:
+ *                         type: string
+ *                         example: Mobil Legend
+ *                       assetType:
+ *                         type: string
+ *                         example: test
+ *                       assetCategory:
+ *                         type: string
+ *                         example: test
+ *                       amount:
+ *                         type: number
+ *                         example: 80000
+ *                       description:
+ *                         type: string
+ *                         example: test
+ *                       userId:
+ *                         type: integer
+ *                         example: 3
+ *                       createdAt:
+ *                         type: string
+ *                         format: date-time
+ *                         example: 2000-12-12T00:00:00.000Z
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date-time
+ *                         example: 2025-06-27T08:54:48.000Z
  *       401:
  *         description: Unauthorized
  */
@@ -92,6 +179,49 @@ export { router };
  *     responses:
  *       200:
  *         description: Asset found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Data aset berhasil ditemukan
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     assetId:
+ *                       type: integer
+ *                       example: 2
+ *                     assetName:
+ *                       type: string
+ *                       example: Mobil Legend
+ *                     assetType:
+ *                       type: string
+ *                       example: test
+ *                     assetCategory:
+ *                       type: string
+ *                       example: test
+ *                     amount:
+ *                       type: number
+ *                       example: 80000
+ *                     description:
+ *                       type: string
+ *                       example: test
+ *                     userId:
+ *                       type: integer
+ *                       example: 3
+ *                     createdAt:
+ *                       type: string
+ *                       format: date-time
+ *                       example: 2000-12-12T00:00:00.000Z
+ *                     updatedAt:
+ *                       type: string
+ *                       format: date-time
+ *                       example: 2025-06-27T08:54:48.000Z
  *       404:
  *         description: Asset not found
  *       401:

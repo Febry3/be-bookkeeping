@@ -34,7 +34,7 @@ class AssetService {
     }
 
     async getAllAssets(userId: number): Promise<Asset[]> {
-        return await Asset.findAll({ where: { userId }, order: [['createdAt', 'DESC']], include: { model: User, as: "user" } });
+        return await Asset.findAll({ where: { userId }, order: [['createdAt', 'DESC']] });
     }
 
     async getAssetById(id: number, userId: number): Promise<Asset | null> {
