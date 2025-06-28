@@ -55,8 +55,9 @@ class IncomeService {
             include: {
                 model: User,
                 as: "user"
-            }
-        });
+            },
+            includeConversion: true
+        } as any);
 
         let totalMainIncome = 0;
         let totalSideIncome = 0;

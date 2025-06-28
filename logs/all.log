@@ -1622,3 +1622,205 @@
 [35m[39m
 2025-06-23 21:56:51:5651 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:200 response-time:106.608 ms[39m
 [35m[39m
+2025-06-23 22:08:04:84 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:200 response-time:96.006 ms[39m
+[35m[39m
+2025-06-23 22:08:42:842 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:200 response-time:96.168 ms[39m
+[35m[39m
+2025-06-23 22:08:56:856 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:200 response-time:102.786 ms[39m
+[35m[39m
+2025-06-23 22:09:06:96 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:200 response-time:92.219 ms[39m
+[35m[39m
+2025-06-23 22:09:11:911 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:200 response-time:93.439 ms[39m
+[35m[39m
+2025-06-23 22:09:54:954 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:200 response-time:89.245 ms[39m
+[35m[39m
+2025-06-23 22:10:28:1028 [35mhttp[39m: [35mGET endpoint:/api/liability status:200 response-time:11.618 ms[39m
+[35m[39m
+2025-06-23 22:10:48:1048 [35mhttp[39m: [35mGET endpoint:/api/liability status:200 response-time:55.790 ms[39m
+[35m[39m
+2025-06-23 22:11:02:112 [35mhttp[39m: [35mGET endpoint:/api/balance-sheet status:200 response-time:47.158 ms[39m
+[35m[39m
+2025-06-23 22:11:57:1157 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:2.097 ms[39m
+[35m[39m
+2025-06-23 22:11:57:1157 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.544 ms[39m
+[35m[39m
+2025-06-23 22:11:57:1157 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:0.611 ms[39m
+[35m[39m
+2025-06-23 22:11:57:1157 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:0.757 ms[39m
+[35m[39m
+2025-06-23 22:11:57:1157 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:304 response-time:0.410 ms[39m
+[35m[39m
+2025-06-23 22:11:57:1157 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.603 ms[39m
+[35m[39m
+2025-06-23 22:14:52:1452 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:3.361 ms[39m
+[35m[39m
+2025-06-23 22:14:52:1452 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.199 ms[39m
+[35m[39m
+2025-06-23 22:14:52:1452 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:0.610 ms[39m
+[35m[39m
+2025-06-23 22:14:52:1452 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:1.297 ms[39m
+[35m[39m
+2025-06-23 22:14:52:1452 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:200 response-time:0.862 ms[39m
+[35m[39m
+2025-06-23 22:14:52:1452 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.586 ms[39m
+[35m[39m
+2025-06-23 22:15:04:154 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:0.701 ms[39m
+[35m[39m
+2025-06-23 22:15:04:154 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:304 response-time:0.489 ms[39m
+[35m[39m
+2025-06-23 22:15:04:154 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:4.395 ms[39m
+[35m[39m
+2025-06-23 22:15:04:154 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:5.319 ms[39m
+[35m[39m
+2025-06-23 22:15:04:154 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:6.348 ms[39m
+[35m[39m
+2025-06-23 22:15:04:154 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.587 ms[39m
+[35m[39m
+2025-06-27 15:28:03:283 [35mhttp[39m: [35mGET endpoint:/ status:200 response-time:2.248 ms[39m
+[35m[39m
+2025-06-27 15:28:03:283 [35mhttp[39m: [35mGET endpoint:/favicon.ico status:404 response-time:1.835 ms[39m
+[35m[39m
+2025-06-27 15:28:04:284 [35mhttp[39m: [35mGET endpoint:/ status:304 response-time:0.588 ms[39m
+[35m[39m
+2025-06-27 15:28:05:285 [35mhttp[39m: [35mGET endpoint:/ status:304 response-time:0.322 ms[39m
+[35m[39m
+2025-06-27 15:28:05:285 [35mhttp[39m: [35mGET endpoint:/ status:304 response-time:0.195 ms[39m
+[35m[39m
+2025-06-27 15:36:04:364 [35mhttp[39m: [35mGET endpoint:/api/asset status:404 response-time:4.096 ms[39m
+[35m[39m
+2025-06-27 15:36:12:3612 [35mhttp[39m: [35mGET endpoint:/api/assets status:500 response-time:185.401 ms[39m
+[35m[39m
+2025-06-27 15:36:32:3632 [35mhttp[39m: [35mGET endpoint:/api/assets status:500 response-time:262.207 ms[39m
+[35m[39m
+2025-06-27 15:36:34:3634 [35mhttp[39m: [35mGET endpoint:/api/assets status:500 response-time:5.621 ms[39m
+[35m[39m
+2025-06-27 15:37:27:3727 [35mhttp[39m: [35mGET endpoint:/api/assets status:200 response-time:64.249 ms[39m
+[35m[39m
+2025-06-27 15:38:52:3852 [35mhttp[39m: [35mPOST endpoint:/api/assets status:500 response-time:8.738 ms[39m
+[35m[39m
+2025-06-27 15:39:01:391 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:83.160 ms[39m
+[35m[39m
+2025-06-27 15:39:19:3919 [35mhttp[39m: [35mPOST endpoint:/api/assets status:201 response-time:34.507 ms[39m
+[35m[39m
+2025-06-27 15:39:25:3925 [35mhttp[39m: [35mGET endpoint:/api/assets status:200 response-time:12.762 ms[39m
+[35m[39m
+2025-06-27 15:39:39:3939 [35mhttp[39m: [35mPUT endpoint:/api/income/1 status:500 response-time:2.563 ms[39m
+[35m[39m
+2025-06-27 15:39:45:3945 [35mhttp[39m: [35mPUT endpoint:/api/income/1 status:500 response-time:58.149 ms[39m
+[35m[39m
+2025-06-27 15:41:47:4147 [35mhttp[39m: [35mPUT endpoint:/api/income/1 status:500 response-time:63.147 ms[39m
+[35m[39m
+2025-06-27 15:41:48:4148 [35mhttp[39m: [35mPUT endpoint:/api/income/1 status:500 response-time:5.179 ms[39m
+[35m[39m
+2025-06-27 15:42:19:4219 [35mhttp[39m: [35mPUT endpoint:/api/income/1 status:500 response-time:65.935 ms[39m
+[35m[39m
+2025-06-27 15:42:20:4220 [35mhttp[39m: [35mPUT endpoint:/api/income/1 status:500 response-time:5.203 ms[39m
+[35m[39m
+2025-06-27 15:43:29:4329 [35mhttp[39m: [35mPUT endpoint:/api/income/1 status:500 response-time:62.632 ms[39m
+[35m[39m
+2025-06-27 15:43:42:4342 [35mhttp[39m: [35mPUT endpoint:/api/assets/1 status:404 response-time:1.303 ms[39m
+[35m[39m
+2025-06-27 15:44:04:444 [35mhttp[39m: [35mPATCH endpoint:/api/assets/1 status:200 response-time:32.437 ms[39m
+[35m[39m
+2025-06-27 15:44:10:4410 [35mhttp[39m: [35mPATCH endpoint:/api/assets/1 status:200 response-time:10.964 ms[39m
+[35m[39m
+2025-06-27 15:44:19:4419 [35mhttp[39m: [35mDELETE endpoint:/api/assets/2 status:500 response-time:4.426 ms[39m
+[35m[39m
+2025-06-27 15:44:25:4425 [35mhttp[39m: [35mDELETE endpoint:/api/assets/2 status:404 response-time:14.189 ms[39m
+[35m[39m
+2025-06-27 15:44:29:4429 [35mhttp[39m: [35mDELETE endpoint:/api/assets/1 status:200 response-time:4.508 ms[39m
+[35m[39m
+2025-06-27 15:44:34:4434 [35mhttp[39m: [35mGET endpoint:/api/assets status:200 response-time:8.192 ms[39m
+[35m[39m
+2025-06-27 15:49:21:4921 [35mhttp[39m: [35mGET endpoint:/ status:304 response-time:1.978 ms[39m
+[35m[39m
+2025-06-27 15:49:24:4924 [35mhttp[39m: [35mGET endpoint:/api-docs status:301 response-time:2.060 ms[39m
+[35m[39m
+2025-06-27 15:49:24:4924 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:1.821 ms[39m
+[35m[39m
+2025-06-27 15:49:24:4924 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.358 ms[39m
+[35m[39m
+2025-06-27 15:49:24:4924 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:2.038 ms[39m
+[35m[39m
+2025-06-27 15:49:24:4924 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:200 response-time:0.316 ms[39m
+[35m[39m
+2025-06-27 15:49:24:4924 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:51.803 ms[39m
+[35m[39m
+2025-06-27 15:51:17:5117 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:3.313 ms[39m
+[35m[39m
+2025-06-27 15:51:17:5117 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.490 ms[39m
+[35m[39m
+2025-06-27 15:51:17:5117 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:0.539 ms[39m
+[35m[39m
+2025-06-27 15:51:17:5117 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:0.856 ms[39m
+[35m[39m
+2025-06-27 15:51:17:5117 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:200 response-time:0.844 ms[39m
+[35m[39m
+2025-06-27 15:51:17:5117 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:2.431 ms[39m
+[35m[39m
+2025-06-27 15:52:09:529 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:3.380 ms[39m
+[35m[39m
+2025-06-27 15:52:09:529 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.109 ms[39m
+[35m[39m
+2025-06-27 15:52:09:529 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:0.514 ms[39m
+[35m[39m
+2025-06-27 15:52:09:529 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:0.552 ms[39m
+[35m[39m
+2025-06-27 15:52:09:529 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:200 response-time:0.799 ms[39m
+[35m[39m
+2025-06-27 15:52:09:529 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.541 ms[39m
+[35m[39m
+2025-06-27 15:54:48:5448 [35mhttp[39m: [35mPOST endpoint:/api/assets status:201 response-time:40.970 ms[39m
+[35m[39m
+2025-06-27 15:54:51:5451 [35mhttp[39m: [35mGET endpoint:/api/assets status:200 response-time:14.119 ms[39m
+[35m[39m
+2025-06-27 15:55:47:5547 [35mhttp[39m: [35mGET endpoint:/api/assets status:200 response-time:48.186 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:3.115 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.825 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:0.621 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:0.397 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:200 response-time:0.589 ms[39m
+[35m[39m
+2025-06-27 15:56:40:5640 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.741 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:3.183 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.255 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:0.604 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:0.488 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:200 response-time:0.826 ms[39m
+[35m[39m
+2025-06-27 15:57:05:575 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.578 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/ status:304 response-time:3.284 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui.css status:304 response-time:1.169 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-bundle.js status:304 response-time:0.463 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-standalone-preset.js status:304 response-time:0.465 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/swagger-ui-init.js status:200 response-time:0.707 ms[39m
+[35m[39m
+2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.555 ms[39m
+[35m[39m
+2025-06-27 17:41:13:4113 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:61.323 ms[39m
+[35m[39m
+2025-06-27 17:41:23:4123 [35mhttp[39m: [35mPOST endpoint:/api/spend status:500 response-time:11.538 ms[39m
+[35m[39m
+2025-06-27 17:41:33:4133 [35mhttp[39m: [35mPOST endpoint:/api/spend status:201 response-time:25.869 ms[39m
+[35m[39m
+2025-06-28 13:54:36:5436 [35mhttp[39m: [35mDELETE endpoint:/api/equity/1 status:401 response-time:12.490 ms[39m
+[35m[39m
+2025-06-28 13:54:44:5444 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:123.992 ms[39m
+[35m[39m
+2025-06-28 13:55:05:555 [35mhttp[39m: [35mDELETE endpoint:/api/equity/1 status:500 response-time:134.725 ms[39m
+[35m[39m

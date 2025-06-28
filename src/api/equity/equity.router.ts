@@ -6,8 +6,8 @@ const { router } = express();
 
 router.get('/equity', authenticateUser.authenticateUser, equityController.getAllEquities as RequestHandler);
 router.post('/equity', authenticateUser.authenticateUser, equityController.createEquity as RequestHandler);
-router.put('/equity/:id', authenticateUser.authenticateUser, equityController.updateSpend as RequestHandler);
-router.delete('/equity/:id', authenticateUser.authenticateUser, equityController.deleteSpend as RequestHandler);
+router.put('/equity/:id', authenticateUser.authenticateUser, equityController.updateEquity as RequestHandler);
+router.delete('/equity/:id', authenticateUser.authenticateUser, equityController.deleteEquity as RequestHandler);
 
 export { router };
 

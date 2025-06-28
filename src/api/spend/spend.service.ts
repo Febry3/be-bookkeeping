@@ -51,11 +51,12 @@ class SpendService {
         const spends = await Spend.findAll({
             where: whereConditions,
             order: [['createdAt', 'DESC']],
-            include: [{
+            include: {
                 model: User,
                 as: "user"
-            }],
-        });
+            },
+            includeConversion: true
+        } as any);
 
         let totalStockSpending: number = 0;
         let totalAllSpending: number = 0;

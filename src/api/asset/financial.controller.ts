@@ -6,10 +6,11 @@ class FinancialController {
     public async createAsset(req: Request, res: Response, next: NextFunction) {
         try {
             const { userId } = (req as any).user;
-            const { assetName, assetValue, assetType, assetDate, assetDescription } = req.body;
+            const { assetName, assetCategory, assetValue, assetType, assetDate, assetDescription } = req.body;
 
             const data = {
-                assetCategory: assetName,
+                assetName: assetName,
+                assetCategory: assetCategory,
                 amount: assetValue,
                 assetType: assetType,
                 createdAt: assetDate,
@@ -63,10 +64,11 @@ class FinancialController {
         try {
             const { userId } = (req as any).user;
             const { id } = req.params;
-            const { assetName, assetValue, assetType, assetDate, assetDescription } = req.body;
+            const { assetName, assetCategory, assetValue, assetType, assetDate, assetDescription } = req.body;
 
             const dataToUpdate = {
-                assetCategory: assetName,
+                assetName: assetName,
+                assetCategory: assetCategory,
                 amount: assetValue,
                 assetType: assetType,
                 createdAt: assetDate,
@@ -100,9 +102,6 @@ class FinancialController {
             next(error);
         }
     }
-
-
-
 }
 
 

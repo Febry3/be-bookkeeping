@@ -4,7 +4,7 @@ import { Liability, User } from "../../model";
 
 class LiabilityService {
     public async getAllLiability(userId: number) {
-        const liabilities = await Liability.findAll({ where: { userId: userId }, include: { model: User, as: "user" }, order: [['createdAt', 'DESC']] });
+        const liabilities = await Liability.findAll({ where: { userId: userId }, include: { model: User, as: "user" }, order: [['createdAt', 'DESC']], includeConversion: true } as any);
         return liabilities;
     }
 

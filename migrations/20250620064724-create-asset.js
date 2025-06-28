@@ -9,6 +9,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
+      assetName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       assetType: {
         type: Sequelize.STRING,
         allowNull: false,
