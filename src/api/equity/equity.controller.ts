@@ -35,12 +35,12 @@ class EquityController {
         }
     }
 
-    public async updateSpend(req: Request, res: Response, next: NextFunction) {
+    public async updateEquity(req: Request, res: Response, next: NextFunction) {
         try {
             const { spendingType, amount, description, equityDate } = req.body;
             const { userId } = req.user!;
-            const { equityId } = req.params;
-            const equity = await equityService.updateEquity(parseInt(equityId), userId, spendingType, amount, description, equityDate);
+            const { id } = req.params;
+            const equity = await equityService.updateEquity(parseInt(id), userId, spendingType, amount, description, equityDate);
 
             return res.status(StatusCodes.CREATED).json({
                 status: true,
@@ -53,11 +53,11 @@ class EquityController {
         }
     }
 
-    public async deleteSpend(req: Request, res: Response, next: NextFunction) {
+    public async deleteEquity(req: Request, res: Response, next: NextFunction) {
         try {
-            const { equityId } = req.params;
+            const { id } = req.params;
             const { userId } = req.user!;
-            const equity = await equityService.deleteEquity(parseInt(equityId), userId);
+            const equity = await equityService.deleteEquity(parseInt(id), userId);
 
             return res.status(StatusCodes.CREATED).json({
                 status: true,

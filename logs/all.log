@@ -1812,3 +1812,15 @@
 [35m[39m
 2025-06-27 15:57:56:5756 [35mhttp[39m: [35mGET endpoint:/api-docs/favicon-32x32.png status:304 response-time:0.555 ms[39m
 [35m[39m
+2025-06-27 17:41:13:4113 [35mhttp[39m: [35mGET endpoint:/api/spend status:200 response-time:61.323 ms[39m
+[35m[39m
+2025-06-27 17:41:23:4123 [35mhttp[39m: [35mPOST endpoint:/api/spend status:500 response-time:11.538 ms[39m
+[35m[39m
+2025-06-27 17:41:33:4133 [35mhttp[39m: [35mPOST endpoint:/api/spend status:201 response-time:25.869 ms[39m
+[35m[39m
+2025-06-28 13:54:36:5436 [35mhttp[39m: [35mDELETE endpoint:/api/equity/1 status:401 response-time:12.490 ms[39m
+[35m[39m
+2025-06-28 13:54:44:5444 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:123.992 ms[39m
+[35m[39m
+2025-06-28 13:55:05:555 [35mhttp[39m: [35mDELETE endpoint:/api/equity/1 status:500 response-time:134.725 ms[39m
+[35m[39m
