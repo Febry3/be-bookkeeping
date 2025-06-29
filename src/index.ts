@@ -53,7 +53,7 @@ app.listen(config.port, '0.0.0.0', async () => {
     // await Asset.sync({ force: true });
     //await Equity.sync({ force: true });
     //await Investation.sync({ force: true });
-    // await Liability.sync({ force: true });
+   //await Liability.sync({ force: true });
     //await Loan.sync({ force: true });
     //await Spend.sync({ force: true });
     console.log("✅ Successfully connected to the database! Sequelize instance is ready.");
