@@ -1844,3 +1844,13 @@
 [35m[39m
 2025-06-29 18:19:10:1910 [35mhttp[39m: [35mGET endpoint:/api/profile status:200 response-time:50.372 ms[39m
 [35m[39m
+2025-06-29 18:19:15:1915 [35mhttp[39m: [35mGET endpoint:/api/profile status:200 response-time:55.417 ms[39m
+[35m[39m
+2025-06-29 18:56:03:563 [35mhttp[39m: [35mPOST endpoint:/api/login status:500 response-time:37.430 ms[39m
+[35m[39m
+2025-06-29 18:56:08:568 [35mhttp[39m: [35mPOST endpoint:/api/login status:500 response-time:3.760 ms[39m
+[35m[39m
+2025-06-29 18:56:09:569 [35mhttp[39m: [35mPOST endpoint:/api/login status:500 response-time:2.546 ms[39m
+[35m[39m
+2025-06-29 18:57:37:5737 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:105.984 ms[39m
+[35m[39m

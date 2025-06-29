@@ -118,9 +118,11 @@ User.init(
                 }
             },
             afterFind: (instances, options) => {
-                const instancesArray = Array.isArray(instances) ? instances : [instances].filter(Boolean);
-                for (const instance of instancesArray) {
-                    delete instance.dataValues.password;
+                if ((options as any).deletePassword) {
+                    const instancesArray = Array.isArray(instances) ? instances : [instances].filter(Boolean);
+                    for (const instance of instancesArray) {
+                        delete instance.dataValues.password;
+                    }
                 }
             }
         },

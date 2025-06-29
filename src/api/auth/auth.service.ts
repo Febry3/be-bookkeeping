@@ -34,7 +34,7 @@ class AuthService {
 
     public async getProfile(userId: number, email: string) {
         try {
-            const user = User.findOne({ where: { id: userId, email: email } })
+            const user = User.findOne({ where: { id: userId, email: email }, deletePassword: true } as any)
             return user;
         } catch (err: any) {
             throw new Error(err as string);
