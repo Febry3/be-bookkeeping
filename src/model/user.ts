@@ -117,6 +117,12 @@ User.init(
                     user.password = await bcrypt.hash(user.password, salt);
                 }
             },
+            afterFind: (instances, options) => {
+                const instancesArray = Array.isArray(instances) ? instances : [instances].filter(Boolean);
+                for (const instance of instancesArray) {
+                    delete instance.dataValues.password;
+                }
+            }
         },
     }
 );

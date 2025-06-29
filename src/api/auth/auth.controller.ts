@@ -29,6 +29,20 @@ class AuthController {
         }
     }
 
+    public async getProfile(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { userId, email } = req.user!;
+            const user = await authService.getProfile(userId, email);
+            return res.status(StatusCodes.OK).json({
+                status: true,
+                message: "Fetch Sucess",
+                data: user
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
     public async updateProfile(req: Request, res: Response, next: NextFunction) {
         try {
             const { name, email, role, language, currency } = req.body;

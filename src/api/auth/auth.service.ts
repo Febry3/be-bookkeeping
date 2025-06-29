@@ -32,6 +32,15 @@ class AuthService {
         }
     }
 
+    public async getProfile(userId: number, email: string) {
+        try {
+            const user = User.findOne({ where: { id: userId, email: email } })
+            return user;
+        } catch (err: any) {
+            throw new Error(err as string);
+        }
+    }
+
     public async updateProfile(userId: number, name: string, email: string, role: string, language: Language, currency: Currency) {
         try {
             const user = await User.findOne({ where: { id: userId } });

@@ -1824,3 +1824,23 @@
 [35m[39m
 2025-06-28 13:55:05:555 [35mhttp[39m: [35mDELETE endpoint:/api/equity/1 status:500 response-time:134.725 ms[39m
 [35m[39m
+2025-06-28 13:57:12:5712 [35mhttp[39m: [35mDELETE endpoint:/api/equity/1 status:201 response-time:38.100 ms[39m
+[35m[39m
+2025-06-29 18:15:31:1531 [35mhttp[39m: [35mGET endpoint:/api/profile status:500 response-time:18.348 ms[39m
+[35m[39m
+2025-06-29 18:15:36:1536 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:135.517 ms[39m
+[35m[39m
+2025-06-29 18:15:47:1547 [35mhttp[39m: [35mGET endpoint:/api/profile status:200 response-time:14.442 ms[39m
+[35m[39m
+2025-06-29 18:18:51:1851 [35mhttp[39m: [35mGET endpoint:/api/profile status:200 response-time:51.039 ms[39m
+[35m[39m
+2025-06-29 18:18:53:1853 [35mhttp[39m: [35mGET endpoint:/api/profile status:200 response-time:4.380 ms[39m
+[35m[39m
+2025-06-29 18:18:56:1856 [35mhttp[39m: [35mGET endpoint:/api/profile status:200 response-time:3.712 ms[39m
+[35m[39m
+2025-06-29 18:18:57:1857 [35mhttp[39m: [35mGET endpoint:/api/profile status:200 response-time:3.563 ms[39m
+[35m[39m
+2025-06-29 18:18:58:1858 [35mhttp[39m: [35mGET endpoint:/api/profile status:200 response-time:4.285 ms[39m
+[35m[39m
+2025-06-29 18:19:10:1910 [35mhttp[39m: [35mGET endpoint:/api/profile status:200 response-time:50.372 ms[39m
+[35m[39m
