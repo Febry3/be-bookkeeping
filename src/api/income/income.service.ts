@@ -9,6 +9,7 @@ interface CreateIncomeData {
     type: string;
     amount: number;
     description: string;
+    incomeTax: number;
     createdAt?: Date;
 }
 
@@ -16,6 +17,7 @@ interface UpdateIncomeData {
     type?: string;
     amount?: number;
     description?: string;
+    incomeTax: number;
     createdAt?: Date;
 }
 
@@ -86,7 +88,8 @@ class IncomeService {
             type: data.type,
             amount: data.amount,
             description: data.description,
-            createdAt: data.createdAt, // Menggunakan tanggal manual
+            createdAt: data.createdAt,
+            incomeTax: data.incomeTax,
             userId: userId
         });
         return income;
@@ -104,6 +107,7 @@ class IncomeService {
         income.type = data.type ?? income.type;
         income.amount = data.amount ?? income.amount;
         income.description = data.description ?? income.description;
+        income.incomeTax = data.incomeTax ?? income.incomeTax;
         if (data.createdAt) income.setDataValue('createdAt', data.createdAt);
 
         await income.save();

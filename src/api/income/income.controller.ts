@@ -7,7 +7,7 @@ class IncomeController {
         try {
             const { userId } = (req as any).user;
             const { type, filter } = req.query;
-            
+
             // Memanggil service dengan userId
             const result = await incomeService.getIncome(userId, type as string, filter as string);
 
@@ -26,12 +26,13 @@ class IncomeController {
         try {
             const { userId } = (req as any).user;
             // Menambahkan 'incomeDate' dari body
-            const { type, amount, description, incomeDate } = req.body;
-            
+            const { type, amount, description, incomeDate, incomeTax } = req.body;
+
             const data = {
                 type,
                 amount,
                 description,
+                incomeTax,
                 createdAt: incomeDate // Mapping tanggal manual
             };
 
@@ -53,12 +54,13 @@ class IncomeController {
             const { id } = req.params;
             const { userId } = (req as any).user;
             // Menambahkan 'incomeDate' dari body
-            const { type, amount, description, incomeDate } = req.body;
+            const { type, amount, description, incomeDate, incomeTax } = req.body;
 
             const dataToUpdate = {
                 type,
                 amount,
                 description,
+                incomeTax,
                 createdAt: incomeDate // Mapping tanggal manual
             };
 

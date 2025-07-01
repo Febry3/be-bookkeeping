@@ -8,6 +8,7 @@ interface IncomeAttributes {
     type: string,
     amount: number,
     description: string,
+    incomeTax: number,
     userId: number,
     createdAt: Date,
     convertedAmount?: number,
@@ -18,9 +19,10 @@ class Income extends Model<InferAttributes<Income>, InferCreationAttributes<Inco
     declare type: string;
     declare amount: number;
     declare description: CreationOptional<string>;
+    declare incomeTax: number;
     declare userId: ForeignKey<User['id']>;
     declare createdAt: CreationOptional<Date>;
-    declare updatedAt: CreationOptional<Date>; // Ditambahkan untuk konsistensi dengan timestamps:true
+    declare updatedAt: CreationOptional<Date>;
     declare convertedAmount?: number;
 }
 
@@ -57,6 +59,10 @@ Income.init({
         type: DataTypes.STRING,
         allowNull: true
     },
+    incomeTax: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false
+    },
     userId: {
         type: DataTypes.INTEGER,
         references: {
@@ -70,7 +76,6 @@ Income.init({
             }
         }
     },
-    // Definisi eksplisit untuk createdAt dan updatedAt agar sesuai dengan deklarasi di class
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false
