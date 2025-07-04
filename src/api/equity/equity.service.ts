@@ -29,6 +29,7 @@ class EquityService {
         equity.equityType = equityType ?? equity.equityType;
         equity.amount = amount ?? equity.amount;
         equity.description = description ?? equity.description;
+        equity.equityName = equityName ?? equity.equityName;
         if (createdAt) equity.setDataValue('createdAt', createdAt);
 
         await equity.save();
