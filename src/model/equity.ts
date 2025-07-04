@@ -12,6 +12,7 @@ import moneyConverter from "../utils/money-converter";
 
 interface EquityAttributes {
     equityId: number;
+    equityName: string;
     equityType: string;
     amount: number;
     description: string;
@@ -23,6 +24,7 @@ interface EquityAttributes {
 
 class Equity extends Model<InferAttributes<Equity>, InferCreationAttributes<Equity>> {
     declare equityId: CreationOptional<number>;
+    declare equityName: CreationOptional<string>;
     declare equityType: string;
     declare amount: number;
     declare description: CreationOptional<string>;
@@ -37,6 +39,10 @@ Equity.init({
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+    },
+    equityName: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     equityType: {
         type: DataTypes.STRING,

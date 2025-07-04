@@ -1902,3 +1902,5 @@
 [35m[39m
 2025-07-02 00:03:25:325 [35mhttp[39m: [35mPUT endpoint:/api/income/5 status:200 response-time:17.750 ms[39m
 [35m[39m
+2025-07-02 00:44:22:4422 [35mhttp[39m: [35mGET endpoint:/api/income?type=main&filter=monthly status:200 response-time:16.055 ms[39m
+[35m[39m
