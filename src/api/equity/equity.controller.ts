@@ -37,10 +37,10 @@ class EquityController {
 
     public async updateEquity(req: Request, res: Response, next: NextFunction) {
         try {
-            const { spendingType, amount, description, equityDate, equityName } = req.body;
+            const { equityType, amount, description, equityDate, equityName } = req.body;
             const { userId } = req.user!;
             const { id } = req.params;
-            const equity = await equityService.updateEquity(parseInt(id), userId, equityName, spendingType, amount, description, equityDate);
+            const equity = await equityService.updateEquity(parseInt(id), userId, equityName, equityType, amount, description, equityDate);
 
             return res.status(StatusCodes.CREATED).json({
                 status: true,
