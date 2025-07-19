@@ -11,6 +11,8 @@ interface SpendAttributes {
     userId: number,
     createdAt: Date,
     convertedAmount?: number;
+    quantity: number;
+    totalAmount: number;
 }
 
 class Spend extends Model<InferAttributes<Spend>, InferCreationAttributes<Spend>> {
@@ -22,6 +24,8 @@ class Spend extends Model<InferAttributes<Spend>, InferCreationAttributes<Spend>
     declare createdAt: CreationOptional<Date>;
     declare user?: NonAttribute<User>;
     declare convertedAmount?: number;
+    declare quantity: number;
+    declare totalAmount: number;
 }
 
 Spend.init({
@@ -56,6 +60,20 @@ Spend.init({
             model: User,
             key: "id"
         }
+    },
+    quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 1,
+        validate: {
+            min: {
+                args: [1],
+                msg: "Quantity must be at least 1"
+            }
+        }
+    },
+    totalAmount: {
+        type: DataTypes.INTEGER,
     },
     createdAt: {
         type: DataTypes.DATE

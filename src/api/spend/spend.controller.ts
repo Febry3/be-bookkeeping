@@ -25,13 +25,13 @@ class SpendController {
     public async createSpend(req: Request, res: Response, next: NextFunction) {
         try {
             const { userId } = (req as any).user;
-            // Menambahkan 'spendDate' dari body
-            const { spendingType, amount, description, spendDate } = req.body;
+            const { spendingType, amount, description, spendDate, quantity } = req.body;
 
             const data = {
                 spendingType,
                 amount,
                 description,
+                quantity,
                 createdAt: spendDate // Mapping tanggal manual
             };
 
@@ -53,13 +53,14 @@ class SpendController {
             const { userId } = (req as any).user;
             const { id } = req.params;
             // Menambahkan 'spendDate' dari body
-            const { spendingType, amount, description, spendDate } = req.body;
+            const { spendingType, amount, description, spendDate, quantity } = req.body;
 
             const dataToUpdate = {
                 spendingType,
                 amount,
                 description,
-                createdAt: spendDate // Mapping tanggal manual
+                quantity,
+                createdAt: spendDate
             };
 
             const spend = await spendService.updateSpend(parseInt(id), dataToUpdate, userId);

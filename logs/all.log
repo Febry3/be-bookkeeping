@@ -1904,3 +1904,45 @@
 [35m[39m
 2025-07-02 00:44:22:4422 [35mhttp[39m: [35mGET endpoint:/api/income?type=main&filter=monthly status:200 response-time:16.055 ms[39m
 [35m[39m
+2025-07-19 14:18:35:1835 [35mhttp[39m: [35mPOST endpoint:/api/spend status:500 response-time:16.016 ms[39m
+[35m[39m
+2025-07-19 14:19:29:1929 [35mhttp[39m: [35mPOST endpoint:/api/spend status:500 response-time:215.217 ms[39m
+[35m[39m
+2025-07-19 14:19:44:1944 [35mhttp[39m: [35mPOST endpoint:/api/spend status:500 response-time:96.933 ms[39m
+[35m[39m
+2025-07-19 14:20:23:2023 [35mhttp[39m: [35mPOST endpoint:/api/spend status:500 response-time:63.550 ms[39m
+[35m[39m
+2025-07-19 14:20:49:2049 [35mhttp[39m: [35mPOST endpoint:/api/spend status:500 response-time:63.063 ms[39m
+[35m[39m
+2025-07-19 14:24:00:240 [35mhttp[39m: [35mPOST endpoint:/api/spend status:500 response-time:74.411 ms[39m
+[35m[39m
+2025-07-19 14:24:25:2425 [35mhttp[39m: [35mPOST endpoint:/api/spend status:500 response-time:56.213 ms[39m
+[35m[39m
+2025-07-19 14:25:59:2559 [35mhttp[39m: [35mPOST endpoint:/api/login status:401 response-time:20.653 ms[39m
+[35m[39m
+2025-07-19 14:26:10:2610 [35mhttp[39m: [35mPOST endpoint:/api/login status:200 response-time:127.065 ms[39m
+[35m[39m
+2025-07-19 14:26:19:2619 [35mhttp[39m: [35mPOST endpoint:/api/spend status:201 response-time:20.793 ms[39m
+[35m[39m
+2025-07-19 14:27:15:2715 [35mhttp[39m: [35mPOST endpoint:/api/spend status:201 response-time:46.725 ms[39m
+[35m[39m
+2025-07-19 14:27:37:2737 [35mhttp[39m: [35mPOST endpoint:/api/spend status:201 response-time:67.943 ms[39m
+[35m[39m
+2025-07-19 14:27:51:2751 [35mhttp[39m: [35mPOST endpoint:/api/spend status:201 response-time:70.071 ms[39m
+[35m[39m
+2025-07-19 14:28:26:2826 [35mhttp[39m: [35mPOST endpoint:/api/spend status:201 response-time:48.242 ms[39m
+[35m[39m
+2025-07-19 14:29:04:294 [35mhttp[39m: [35mPUT endpoint:/api/spend/6 status:200 response-time:18.839 ms[39m
+[35m[39m
+2025-07-19 14:29:22:2922 [35mhttp[39m: [35mPUT endpoint:/api/spend/6 status:200 response-time:15.191 ms[39m
+[35m[39m
+2025-07-19 14:29:26:2926 [35mhttp[39m: [35mPUT endpoint:/api/spend/6 status:200 response-time:11.854 ms[39m
+[35m[39m
+2025-07-19 14:29:43:2943 [35mhttp[39m: [35mPUT endpoint:/api/spend/6 status:200 response-time:54.000 ms[39m
+[35m[39m
+2025-07-19 14:29:49:2949 [35mhttp[39m: [35mPUT endpoint:/api/spend/6 status:200 response-time:8.730 ms[39m
+[35m[39m
+2025-07-19 14:29:54:2954 [35mhttp[39m: [35mPUT endpoint:/api/spend/6 status:200 response-time:7.886 ms[39m
+[35m[39m
+2025-07-19 14:30:40:3040 [35mhttp[39m: [35mPUT endpoint:/api/spend/6 status:200 response-time:55.174 ms[39m
+[35m[39m

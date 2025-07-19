@@ -8,6 +8,7 @@ interface CreateSpendData {
     spendingType: string;
     amount: number;
     description: string;
+    quantity: number;
     createdAt?: Date;
 }
 
@@ -15,6 +16,7 @@ interface UpdateSpendData {
     spendingType?: string;
     amount?: number;
     description?: string;
+    quantity?: number;
     createdAt?: Date;
 }
 
@@ -76,12 +78,16 @@ class SpendService {
     }
 
     public async createSpend(data: CreateSpendData, userId: number): Promise<Spend> {
+        const totalAmount = data.quantity * data.amount;
+        console.log(data.quantity)
         const spend = await Spend.create({
             spendingType: data.spendingType,
             amount: data.amount,
             description: data.description,
-            createdAt: data.createdAt, // Menggunakan tanggal manual
+            createdAt: data.createdAt,
+            quantity: data.quantity,
             userId: userId,
+            totalAmount: totalAmount
         });
         return spend;
     }
@@ -95,6 +101,8 @@ class SpendService {
         spend.spendingType = data.spendingType ?? spend.spendingType;
         spend.amount = data.amount ?? spend.amount;
         spend.description = data.description ?? spend.description;
+        spend.quantity = data.quantity ?? spend.quantity;
+        spend.totalAmount = spend.amount * spend.quantity;
         if (data.createdAt) spend.setDataValue('createdAt', data.createdAt);
 
         await spend.save();

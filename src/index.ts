@@ -48,14 +48,18 @@ app.use(errorHandlerMiddleware);
 // Start server
 app.listen(config.port, '0.0.0.0', async () => {
   try {
-    //await User.sync({ force: true });
-    //await Income.sync({ force: true });
-    //await Asset.sync({ force: true });
-    //await Equity.sync({ force: true });
-    //await Investation.sync({ force: true });
-    //await Liability.sync({ force: true });
-    //await Loan.sync({ force: true });
-    //await Spend.sync({ force: true });
+    // // Sync User model first since other models depend on it
+    // await User.sync({ force: true });
+    // // Then sync the dependent models
+    // await Promise.all([
+    //   Income.sync({ force: true }),
+    //   Asset.sync({ force: true }),
+    //   Equity.sync({ force: true }),
+    //   Investation.sync({ force: true }),
+    //   Liability.sync({ force: true }),
+    //   Loan.sync({ force: true }),
+    //   Spend.sync({ force: true })
+    // ]);
     console.log("✅ Successfully connected to the database! Sequelize instance is ready.");
   } catch (error) {
     console.error("❌ Failed to connect to the database:", error);
