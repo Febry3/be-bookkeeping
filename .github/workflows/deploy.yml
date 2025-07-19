@@ -16,9 +16,9 @@ jobs:
       - name: Deploy and Restart PM2
         uses: appleboy/ssh-action@v1.0.3 # Menggunakan versi terbaru
         with:
-          host: 20.214.51.17
-          username: 'ihear_fe'
-          password: 'Qa04091518@@' # Atau gunakan 'key' untuk SSH key
+          host: 40.81.193.143
+          username: 'atmin'
+          password: 'Hidupjokow1.' # Atau gunakan 'key' untuk SSH key
           script: |
             # 1. Navigasi ke direktori proyek
             # Menggunakan path dari log error Anda untuk akurasi
